@@ -1,0 +1,11 @@
+@media screen and (orientation:landscape) {
+    body header section input{
+        width: 10vw;
+    }
+}
+
+@media screen and (orientation:portrait) {
+     body header section input{
+        width: 40vw;
+    }
+}

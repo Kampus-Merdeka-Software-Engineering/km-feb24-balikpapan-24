@@ -8,31 +8,75 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/global.css">
-    <link rel="stylesheet" href="./css/templates.css">
-    <link rel="stylesheet" href="./css/style1.css">
-    <link rel="stylesheet" href="./css/style2.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/responsive.css">
 </head>
 <body>
     <header>
         <h1>Pizza Sales Report 24</h1>
         <nav>
             <ul>
-                <li>Toggle 1</li>
-                <li>Toggle 2</li>
+                <li>Settings</li>
+                <li>Graphs</li>
                 <li>Toggle 3</li>
             </ul> 
         </nav>
+        
+        <section>
+            <h2>Pengaturan</h2>
+            <div>
+                <label>Lebar Halaman</label>
+                <input type="range" min="10" max="100" value="100">
+            </div>
+        </section>
+        <section>
+            <h2>Halaman Tabel</h2>
+
+        </section>
+
     </header>
 
     <main>
-        <div style="height: 200vh;"></div>
+        <iframe src="./graphs/graph2.html"></iframe>
     </main>
 
     <aside>
-
+        
     </aside>
     <footer>
 
     </footer>
 </body>
 </html>
+<script defer src="./js/functions.js"></script>
+<script defer>
+//menambahkan elemen main
+let mainIframe = document.querySelector('body main iframe');
+
+//mendapatkan elemen dom navbar dan sidebar
+const navLists = document.querySelector('body header nav ul').querySelectorAll('li');
+const sideBars = document.querySelector('body header').querySelectorAll('section');
+
+//menambahkan fungsi klik toggle display sekaligus mendapatkan elemen dom input di setiap sidebar
+let sidebarInput = [];
+let sidebarLabel = []
+
+for(let i=0; i < sideBars.length; i++){
+    navLists[i].onclick = function(){
+        toggleDisplay(sideBars[i]);
+    };
+    sidebarInput[i] = sideBars[i].querySelectorAll('input');
+    sidebarLabel[i] = sideBars[i].querySelectorAll('label');
+};
+
+//nama label 
+let labelNames = [['Lebar Halaman']]
+
+//menambahkan label responsif dan fungsi pada setiap input sidebar
+sidebarInput[0][0].oninput = function(){
+    let val = sidebarInput[0][0].value;
+    mainIframe.style.width = val + "%";
+    sidebarLabel[0][0].innerHTML = labelNames[0][0] + ": " + val + "%";
+}
+
+</script>
