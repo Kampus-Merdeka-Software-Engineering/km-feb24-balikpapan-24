@@ -25,19 +25,26 @@
         <section>
             <h2>Pengaturan</h2>
             <div>
-                <label>Lebar Halaman</label>
+                <label>Lebar Halaman: 100%</label>
                 <input type="range" min="10" max="100" value="100">
             </div>
         </section>
         <section>
             <h2>Halaman Tabel</h2>
-
+            <div>
+                <label>Bulan Minimal: 1</label>
+                <input type="range" min="1" max="12" value="1">
+            </div>
+            <div>
+                <label>Bulan Maksimal: 12</label>
+                <input type="range" min="1" max="12" value="12">
+            </div>
         </section>
 
     </header>
 
     <main>
-        <iframe src="./graphs/graph2.html"></iframe>
+
     </main>
 
     <aside>
@@ -48,10 +55,11 @@
     </footer>
 </body>
 </html>
-<script defer src="./js/functions.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="./js/functions.js"></script>
 <script defer>
 //menambahkan elemen main
-let mainIframe = document.querySelector('body main iframe');
+let mainFrame = document.querySelector('body main');
 
 //mendapatkan elemen dom navbar dan sidebar
 const navLists = document.querySelector('body header nav ul').querySelectorAll('li');
@@ -60,6 +68,17 @@ const sideBars = document.querySelector('body header').querySelectorAll('section
 //menambahkan fungsi klik toggle display sekaligus mendapatkan elemen dom input di setiap sidebar
 let sidebarInput = [];
 let sidebarLabel = []
+
+//dataset and parameters
+let datasetMonth; let datasetLoaded = false; let charts;
+let pageParameters = {
+    pageWidth: 100, 
+}
+
+let chartParameters = {
+    minMonth: 1, 
+    maxMonth: 12
+}
 
 for(let i=0; i < sideBars.length; i++){
     navLists[i].onclick = function(){
@@ -73,14 +92,33 @@ for(let i=0; i < sideBars.length; i++){
 let labelNames = 
 [
 ['Lebar Halaman'],
-['lorem']
+['Bulan Minimal', 'Bulan Maksimal']
 ]
 
 //menambahkan label responsif dan fungsi pada setiap input sidebar
+//sidebar kiri
 sidebarInput[0][0].oninput = function(){
-    let val = sidebarInput[0][0].value;
-    mainIframe.style.width = val + "%";
-    sidebarLabel[0][0].innerHTML = labelNames[0][0] + ": " + val + "%";
+    pageParameters.pageWidth = parseInt(sidebarInput[0][0].value);
+    mainFrame.style.width = pageParameters.pageWidth + "%";
+    sidebarLabel[0][0].innerHTML = labelNames[0][0] + ": " + pageParameters.pageWidth + "%";
 }
 
+//sidebar kanan
+sidebarInput[1][0].oninput = function(){
+    chartParameters.minMonth = parseInt(sidebarInput[1][0].value);
+    sidebarLabel[1][0].innerHTML = labelNames[1][0] + ": " + chartParameters.minMonth;
+    loadMonthlyChart(mainFrame, datasetMonth);
+};
+
+sidebarInput[1][1].oninput = function(){
+    chartParameters.maxMonth = parseInt(sidebarInput[1][1].value);
+    sidebarLabel[1][1].innerHTML = labelNames[1][1] + ": " + chartParameters.maxMonth;
+    loadMonthlyChart(mainFrame, datasetMonth);
+    
+};
+
+
+
+
 </script>
+<script defer src="./js/main.js"></script>

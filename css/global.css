@@ -4,3 +4,8 @@
     padding: none; padding: 0px;
     box-sizing: border-box;
 }
+
+canvas {
+    width: 100% !important;
+    height: 100% !important;
+}

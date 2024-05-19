@@ -1,11 +1,15 @@
 @media screen and (orientation:landscape) {
     body header section {
-        width: 12vw;
+        width: 15vw;
+    }
+    body main section {
+        max-width: 30vw;
     }
 }
 
 @media screen and (orientation:portrait) {
-     body header section {
+    body header section {
         width: 50vw;
     }
+
 }
