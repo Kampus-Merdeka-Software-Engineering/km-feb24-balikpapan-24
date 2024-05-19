@@ -74,8 +74,8 @@ body{
 body main{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(26rem, 1fr));
-    grid-column-gap: 10px;
-    grid-row-gap: 10px;
+    grid-column-gap: 0.5rem;
+    grid-row-gap: 0.5rem;
     padding: 10px;
     overflow-y: auto;
     overflow-x: hidden;
