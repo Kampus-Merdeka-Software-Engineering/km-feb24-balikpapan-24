@@ -1,6 +1,6 @@
 
 
-fetch_master("./dataset/dataset1.json").then(
+fetch_master("./dataset/datasetBulan.json").then(
     function (value) { 
         datasetMonth = value; datasetLoaded = true;
         loadMonthlyChart(mainFrame, datasetMonth);
