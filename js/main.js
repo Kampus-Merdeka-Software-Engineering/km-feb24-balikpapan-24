@@ -42,7 +42,9 @@ let dummyName = ['revenue', 'pizza order'];
             let labels = individualLabel;
             let data = individualData;
             let unit = individualUnit;
-            makeChart(container, new Charx(type, name, labels, data, unit));
+            let charlets = new Charx(type, name, labels, data, unit)
+
+            makeChart(container, charlets);
         };
     };
 
