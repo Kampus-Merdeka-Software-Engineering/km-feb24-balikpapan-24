@@ -1,0 +1,11 @@
+{
+"labels" : ["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"],
+"datasets" :[
+    {
+        "name" : "Revenue",
+        "unit" : "USD",
+        "data": [107329.55, 114133.80, 114408.40, 123528.50, 136073.90, 123182.40, 99203.50]
+    }
+
+]
+}
