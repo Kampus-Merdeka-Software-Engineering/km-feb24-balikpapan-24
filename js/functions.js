@@ -53,31 +53,23 @@ function makeChart(e, charx) {
   }); 
 };
 
-function rangeMaker(start, end) {
-  let array = [];
-  if (typeof start === "number" && typeof end === "number") {
-    if (start <= end) {
-      for (let i = start; i <= end; i++) {
-        array.push(i);
-      };
-    } else {
-      for (let i = start; i >= end; i--) {
-        array.push(i);
-      };
-    };
-  } else if (typeof start === "string" && typeof end === "string") {
-    if (start <= end) {
-      for (let i = start.charCodeAt(0); i <= end.charCodeAt(0); i++) {
-        array.push(String.fromCharCode(i));
-      };
-    } else {
-      for (let i = start.charCodeAt(0); i >= end.charCodeAt(0); i--) {
-        array.push(String.fromCharCode(i));
-      };
-    };
-  };
-  return array;
-};
+function convertRangeToMonth(minMonth, maxMonth) {
+    // Define an array of month names in Indonesian in lowercase
+    const monthNames = [
+        'januari', 'februari', 'maret', 'april', 'mei', 'juni',
+        'juli', 'agustus', 'september', 'oktober', 'november', 'desember'
+    ];
+    
+    // Create an array to store the result
+    const result = [];
+    
+    // Loop from minMonth to maxMonth and add the corresponding month names to the result array
+    for (let i = minMonth; i <= maxMonth; i++) {
+        result.push(monthNames[i - 1]); // Adjust index as array is 0-based
+    }
+    
+    return result;
+}
 
 function Charx(type, name, labels, data, unit){
   this.type = type;

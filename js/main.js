@@ -3,23 +3,28 @@
 fetch_master("./dataset/datasetBulan.json").then(
     function (value) { 
         datasetMonth = value; datasetLoaded = true;
-        loadMonthlyChart(mainFrame, datasetMonth);
+        loadIndividualChart(mainFrame, datasetMonth, 'month');
     },
         function (error) { alert("Database Error!") }
 );
 
 
 
-function loadMonthlyChart(container, dataset){
+function loadIndividualChart(container, dataset, type){
 if(datasetLoaded){
 
 removeAllChartSection(container);
 
-let monthRange = rangeMaker(chartParameters.minMonth, chartParameters.maxMonth);
+let range;
+
+if(type.toLowerCase() == 'month'){
+    range = convertRangeToMonth(chartParameters.minMonth, chartParameters.maxMonth);
+}
+
 let dummyName = ['pizza order', 'pizza order id'];
 
     for(let i = 0; i < dataset.labels.length; i++){
-        if(monthRange.includes(i+1)){
+        if(range.includes(dataset.labels[i].toLowerCase())){
             let individualData = [];
             let individualLabel = [];
             let individualUnit = []

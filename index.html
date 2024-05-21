@@ -107,13 +107,13 @@ sidebarInput[0][0].oninput = function(){
 sidebarInput[1][0].oninput = function(){
     chartParameters.minMonth = parseInt(sidebarInput[1][0].value);
     sidebarLabel[1][0].innerHTML = labelNames[1][0] + ": " + chartParameters.minMonth;
-    loadMonthlyChart(mainFrame, datasetMonth);
+    loadIndividualChart(mainFrame, datasetMonth, 'month');
 };
 
 sidebarInput[1][1].oninput = function(){
     chartParameters.maxMonth = parseInt(sidebarInput[1][1].value);
     sidebarLabel[1][1].innerHTML = labelNames[1][1] + ": " + chartParameters.maxMonth;
-    loadMonthlyChart(mainFrame, datasetMonth);
+    loadIndividualChart(mainFrame, datasetMonth, 'month');
     
 };
 
