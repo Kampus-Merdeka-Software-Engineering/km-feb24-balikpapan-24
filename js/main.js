@@ -13,10 +13,7 @@ fetch_master("./dataset/datasetBulan.json").then(
 function loadMonthlyChart(container, dataset){
 if(datasetLoaded){
 
-let sections = container.querySelectorAll('section');
-sections.forEach(section => {
-    section.remove();
-});
+removeAllChartSection(container);
 
 let monthRange = rangeMaker(chartParameters.minMonth, chartParameters.maxMonth);
 let dummyName = ['pizza order', 'pizza order id'];

@@ -51,7 +51,7 @@ function makeChart(e, charx) {
       }
     }
   }); 
-}
+};
 
 function rangeMaker(start, end) {
   let array = [];
@@ -59,25 +59,25 @@ function rangeMaker(start, end) {
     if (start <= end) {
       for (let i = start; i <= end; i++) {
         array.push(i);
-      }
+      };
     } else {
       for (let i = start; i >= end; i--) {
         array.push(i);
-      }
-    }
+      };
+    };
   } else if (typeof start === "string" && typeof end === "string") {
     if (start <= end) {
       for (let i = start.charCodeAt(0); i <= end.charCodeAt(0); i++) {
         array.push(String.fromCharCode(i));
-      }
+      };
     } else {
       for (let i = start.charCodeAt(0); i >= end.charCodeAt(0); i--) {
         array.push(String.fromCharCode(i));
-      }
-    }
-  }
+      };
+    };
+  };
   return array;
-}
+};
 
 function Charx(type, name, labels, data, unit){
   this.type = type;
@@ -85,4 +85,13 @@ function Charx(type, name, labels, data, unit){
   this.labels = labels;
   this.data = data;
   this.unit = unit;
-}
+};
+
+function removeAllChartSection(container){
+
+  let sections = container.querySelectorAll('section');
+  sections.forEach(section => {
+      section.remove();
+  });
+
+};
