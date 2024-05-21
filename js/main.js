@@ -19,7 +19,7 @@ sections.forEach(section => {
 });
 
 let monthRange = rangeMaker(chartParameters.minMonth, chartParameters.maxMonth);
-let dummyName = ['revenue', 'pizza order'];
+let dummyName = ['pizza order', 'pizza order id'];
 
     for(let i = 0; i < dataset.labels.length; i++){
         if(monthRange.includes(i+1)){
