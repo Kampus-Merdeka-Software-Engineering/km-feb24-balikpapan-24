@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kelompok 24 Balikpapan 2024</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/global.css">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/responsive.css">
@@ -29,6 +29,7 @@
                 <input type="range" min="10" max="100" value="100">
             </div>
         </section>
+        
         <section>
             <h2>Halaman Tabel</h2>
             <div>
@@ -40,85 +41,84 @@
                 <input type="range" min="1" max="12" value="12">
             </div>
         </section>
-
     </header>
 
-    <main>
-
-    </main>
-
-    <aside>
-        
-    </aside>
+    <main></main>
+    <aside></aside>
     <footer>
-
+        <p>&copy; 2024 Kelompok 24 Balikpapan.</p>
+        <div class="social-icons">
+            <a href="https://www.facebook.com" class="facebook" target="_blank"></a>
+            <a href="https://www.twitter.com" class="twitter" target="_blank"></a>
+            <a href="https://www.instagram.com" class="instagram" target="_blank"></a>
+            <a href="https://www.linkedin.com" class="linkedin" target="_blank"></a>
+        </div>
+        <p>Website by <a href="https://example.com" target="_blank">Team 24 Balikpapan Ilmu Padi Kawan</a></p>
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="./js/functions.js"></script>
+    <script defer>
+        // Menambahkan elemen main
+        let mainFrame = document.querySelector('body main');
+
+        // Mendapatkan elemen dom navbar dan sidebar
+        const navLists = document.querySelector('body header nav ul').querySelectorAll('li');
+        const sideBars = document.querySelector('body header').querySelectorAll('section');
+
+        // Menambahkan fungsi klik toggle display sekaligus mendapatkan elemen dom input di setiap sidebar
+        let sidebarInput = [];
+        let sidebarLabel = []
+
+        // Dataset and parameters
+        let datasetMonth; 
+        let datasetLoaded = false; 
+        let charts;
+
+        let pageParameters = {
+            pageWidth: 100, 
+        }
+
+        let chartParameters = {
+            minMonth: 1, 
+            maxMonth: 12
+        }
+
+        for(let i = 0; i < sideBars.length; i++) {
+            navLists[i].onclick = function() {
+                toggleDisplay(sideBars[i]);
+            };
+            sidebarInput[i] = sideBars[i].querySelectorAll('input');
+            sidebarLabel[i] = sideBars[i].querySelectorAll('label');
+        }
+
+        // Nama label 
+        let labelNames = [
+            ['Lebar Halaman'],
+            ['Bulan Minimal', 'Bulan Maksimal']
+        ]
+
+        // Menambahkan label responsif dan fungsi pada setiap input sidebar
+        // Sidebar kiri
+        sidebarInput[0][0].oninput = function() {
+            pageParameters.pageWidth = parseInt(sidebarInput[0][0].value);
+            mainFrame.style.width = pageParameters.pageWidth + "%";
+            sidebarLabel[0][0].innerHTML = labelNames[0][0] + ": " + pageParameters.pageWidth + "%";
+        }
+
+        // Sidebar kanan
+        sidebarInput[1][0].oninput = function() {
+            chartParameters.minMonth = parseInt(sidebarInput[1][0].value);
+            sidebarLabel[1][0].innerHTML = labelNames[1][0] + ": " + chartParameters.minMonth;
+            loadMonthlyChart(mainFrame, datasetMonth);
+        };
+
+        sidebarInput[1][1].oninput = function() {
+            chartParameters.maxMonth = parseInt(sidebarInput[1][1].value);
+            sidebarLabel[1][1].innerHTML = labelNames[1][1] + ": " + chartParameters.maxMonth;
+            loadMonthlyChart(mainFrame, datasetMonth);
+        };
+    </script>
+    <script defer src="./js/main.js"></script>
 </body>
 </html>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="./js/functions.js"></script>
-<script defer>
-//menambahkan elemen main
-let mainFrame = document.querySelector('body main');
-
-//mendapatkan elemen dom navbar dan sidebar
-const navLists = document.querySelector('body header nav ul').querySelectorAll('li');
-const sideBars = document.querySelector('body header').querySelectorAll('section');
-
-//menambahkan fungsi klik toggle display sekaligus mendapatkan elemen dom input di setiap sidebar
-let sidebarInput = [];
-let sidebarLabel = []
-
-//dataset and parameters
-let datasetMonth; let datasetLoaded = false; let charts;
-let pageParameters = {
-    pageWidth: 100, 
-}
-
-let chartParameters = {
-    minMonth: 1, 
-    maxMonth: 12
-}
-
-for(let i=0; i < sideBars.length; i++){
-    navLists[i].onclick = function(){
-        toggleDisplay(sideBars[i]);
-    };
-    sidebarInput[i] = sideBars[i].querySelectorAll('input');
-    sidebarLabel[i] = sideBars[i].querySelectorAll('label');
-};
-
-//nama label 
-let labelNames = 
-[
-['Lebar Halaman'],
-['Bulan Minimal', 'Bulan Maksimal']
-]
-
-//menambahkan label responsif dan fungsi pada setiap input sidebar
-//sidebar kiri
-sidebarInput[0][0].oninput = function(){
-    pageParameters.pageWidth = parseInt(sidebarInput[0][0].value);
-    mainFrame.style.width = pageParameters.pageWidth + "%";
-    sidebarLabel[0][0].innerHTML = labelNames[0][0] + ": " + pageParameters.pageWidth + "%";
-}
-
-//sidebar kanan
-sidebarInput[1][0].oninput = function(){
-    chartParameters.minMonth = parseInt(sidebarInput[1][0].value);
-    sidebarLabel[1][0].innerHTML = labelNames[1][0] + ": " + chartParameters.minMonth;
-    loadIndividualChart(mainFrame, datasetMonth, 'month');
-};
-
-sidebarInput[1][1].oninput = function(){
-    chartParameters.maxMonth = parseInt(sidebarInput[1][1].value);
-    sidebarLabel[1][1].innerHTML = labelNames[1][1] + ": " + chartParameters.maxMonth;
-    loadIndividualChart(mainFrame, datasetMonth, 'month');
-    
-};
-
-
-
-
-</script>
-<script defer src="./js/main.js"></script>
