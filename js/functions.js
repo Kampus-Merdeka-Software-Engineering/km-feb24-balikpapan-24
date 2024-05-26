@@ -107,21 +107,29 @@ this.displayType = displayType; //tipe penampilan chart
 
 // Fungsi untuk menghapus semua bagian grafik dari sebuah elemen kontainer
 function removeAllChartSection(container){
-let sections = container.querySelectorAll('section'); // Memilih semua section dalam kontainer
-sections.forEach(section => {
-    section.remove(); // Menghapus setiap section dari kontainer
-});
+  let sections = container.querySelectorAll('section'); // Memilih semua section dalam kontainer
+  sections.forEach(section => {
+      section.remove(); // Menghapus setiap section dari kontainer
+  });
+
+  return sections.length;
 };
 
 //mengubah range
-function setRangeLimits(input, min, max) {
-    input.min = min;
-    input.max = max;
-    chartParameters.minValue = min;
-    chartParameters.maxValue = max;
-}
+function setRangeLimits(sidebar, index, data) {
+
+  let len = data.labels.length;
+
+  sidebar[index[0]][index[1]].min = 1;
+  sidebar[index[0]][index[1]].max = len;
+  sidebar[index[0]][index[2]].min = 1;
+  sidebar[index[0]][index[2]].max = len;
+
+  sidebar[index[0]][index[1]].value = len;
+  sidebar[index[0]][index[2]].value = 1;
+};
 
 function setLabelData(datasetIndex, val){
   return dataset[datasetIndex].labels[val-1];
 
-}
+};

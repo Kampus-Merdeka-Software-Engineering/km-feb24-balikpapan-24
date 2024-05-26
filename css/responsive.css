@@ -1,6 +1,7 @@
 @media screen and (orientation:landscape) {
     body header section {
         width: 15vw;
+        overflow-y: auto;
     }
     body main section {
         max-width: 30vw;

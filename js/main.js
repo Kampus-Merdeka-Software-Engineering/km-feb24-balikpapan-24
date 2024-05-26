@@ -87,19 +87,16 @@ function loadIndividualChart(dataset, type){
     }else{
         // Menampilkan pesan kesalahan jika dataset belum dimuat
         alert("dataset error");
-    }
-}
+    };
+};
 
 
 // Membuat dan menampilkan grafik menggunakan data individu yang ditentukan
 function renderCharts(container){
-
     // Menghapus semua bagian grafik yang ada di dalam kontainer
     removeAllChartSection(container);
 
     mainCharts.forEach(charlets => {
         makeChart(container, charlets); // Menghapus setiap section dari kontainer
     });
-    
-
-}
+};

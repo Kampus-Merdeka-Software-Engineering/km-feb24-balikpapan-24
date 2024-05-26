@@ -10,6 +10,11 @@
         "name" : "Pizza Order",
         "unit" : "Orders",
         "data": [6485, 6895, 6946, 7478, 8242, 7493, 6035]
+    },
+    {
+        "name" : "Pizza Order ID",
+        "unit" : "Unique Orders",
+        "data": [2794, 2973, 3024, 3239, 3538, 3158, 2624]
     }
 ]
 }

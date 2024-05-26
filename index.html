@@ -66,7 +66,7 @@
             <div>
                 <span>Atur Chart</span>
                 <button>Tambah Chart</button>
-                <button>Tampilkan Chart</button>
+                <button>Refresh Chart</button>
                 <button>Hapus Semua Chart</button>
             </div>
         </section>
@@ -98,7 +98,7 @@
 
         // Menambahkan fungsi klik toggle display sekaligus mendapatkan elemen dom input di setiap sidebar
         let sidebarInput = [];
-        let sidebarLabel = []
+        let sidebarLabel = [];
 
         // Dataset and parameters
         let dataset = []; 
@@ -145,26 +145,20 @@
             let val = parseInt(sidebarInput[1][0].value);
             chartParameters.datasetIndex = val;
 
+            setRangeLimits(sidebarInput, [1,1,2], dataset[chartParameters.datasetIndex]);
+
             switch (val) {
                 case 0:
                     labelNames[1][1] = "Jam Minimal"; labelNames[1][2] = "Jam Maksimal"; 
-                    setRangeLimits(sidebarInput[1][1], 9, 23);
-                    setRangeLimits(sidebarInput[1][2], 9, 23);
                     break;
                 case 1:
                     labelNames[1][1] = "Hari Minimal"; labelNames[1][2] = "Hari Maksimal"; 
-                    setRangeLimits(sidebarInput[1][1], 1, 7);
-                    setRangeLimits(sidebarInput[1][2], 1, 7);
                     break;
                 case 2:
                     labelNames[1][1] = "Bulan Minimal"; labelNames[1][2] = "Bulan Maksimal"; 
-                    setRangeLimits(sidebarInput[1][1], 1, 12);
-                    setRangeLimits(sidebarInput[1][2], 1, 12);
                     break;
                 case 3:
                     labelNames[1][1] = "Ukuran Minimal"; labelNames[1][2] = "Ukuran Maksimal";  
-                    setRangeLimits(sidebarInput[1][1], 1, 4);
-                    setRangeLimits(sidebarInput[1][2], 1, 4);
                     break;
                 default:
                     console.log("No valid option selected");
@@ -194,7 +188,14 @@
             chartParameters.chartDisplayType = parseInt(sidebarInput[1][3].value);
         };
         sidebarInput[1][4].onclick = function() {
-            loadIndividualChart(dataset[chartParameters.datasetIndex], 'bar');
+    
+            if(chartParameters.nameSelections.length != 0){
+
+                loadIndividualChart(dataset[chartParameters.datasetIndex], 'bar');
+                renderCharts(mainFrame);
+
+            };
+
         };
         sidebarInput[1][5].onclick = function() {
             renderCharts(mainFrame);
