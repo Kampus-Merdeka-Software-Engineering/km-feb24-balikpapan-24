@@ -120,13 +120,16 @@ function setRangeLimits(sidebar, index, data) {
 
   let len = data.labels.length;
 
+  chartParameters.minValue = 1;
+  chartParameters.maxValue = len;
+
   sidebar[index[0]][index[1]].min = 1;
   sidebar[index[0]][index[1]].max = len;
   sidebar[index[0]][index[2]].min = 1;
   sidebar[index[0]][index[2]].max = len;
 
-  sidebar[index[0]][index[1]].value = len;
-  sidebar[index[0]][index[2]].value = 1;
+  sidebar[index[0]][index[1]].value = 1;
+  sidebar[index[0]][index[2]].value = len;
 };
 
 function setLabelData(datasetIndex, val){
