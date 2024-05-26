@@ -50,12 +50,23 @@
                 <input type="range" min="1" max="12" value="12">
             </div>
             <div>
+                <label>Pilih Jenis Chart</label>
+                <select>
+                    <option value="0">Single Chart</option>
+                    <option value="1">Multi Chart</option>
+                </select>
+            </div>
+            <div id="name_selection">
+                <span>Seleksi Nama</span>
+                <p>Revenue</p>
+                <p>Pizza Order</p>
+                <p>Pizza Order ID</p>
+            </div>
+
+            <div>
+                <span>Atur Chart</span>
                 <button>Tambah Chart</button>
-            </div>
-            <div>
                 <button>Tampilkan Chart</button>
-            </div>
-            <div>
                 <button>Hapus Semua Chart</button>
             </div>
         </section>
@@ -101,7 +112,9 @@
         let chartParameters = {
             datasetIndex: 2,
             minValue: 1, 
-            maxValue: 12
+            maxValue: 12,
+            chartDisplayType: 0,
+            nameSelections: []
         }
 
         for(let i = 0; i < sideBars.length; i++) {
@@ -177,17 +190,48 @@
             sidebarLabel[1][2].innerHTML = labelNames[1][2] + ": " + setLabelData(sidebarInput[1][0].value, sidebarInput[1][2].value);
          
         };
-
-        sidebarInput[1][3].onclick = function() {
-            loadIndividualChart(dataset[chartParameters.datasetIndex], 'bar');
+        sidebarInput[1][3].oninput = function() {
+            chartParameters.chartDisplayType = parseInt(sidebarInput[1][3].value);
         };
         sidebarInput[1][4].onclick = function() {
-            renderCharts(mainFrame);
+            loadIndividualChart(dataset[chartParameters.datasetIndex], 'bar');
         };
         sidebarInput[1][5].onclick = function() {
+            renderCharts(mainFrame);
+        };
+        sidebarInput[1][6].onclick = function() {
             removeAllChartSection(mainFrame);
             mainCharts = [];
         };
+
+
+
+
+
+        //seleksi nama metric
+        const name_container = document.getElementById("name_selection");
+        let inputSelections = name_container.querySelectorAll("p");
+        
+
+        function handleClick(event) {
+        
+            toggleColor(event.target);
+            chartParameters.nameSelections = [];
+
+            inputSelections.forEach(selection => {
+                if(selection.className == 'highlight1'){
+                    chartParameters.nameSelections.push(selection.innerText.toLowerCase());
+                };
+            });
+
+            console.log(nameSelections);
+
+        };
+
+        inputSelections.forEach(selection => {
+            selection.addEventListener('click', handleClick);
+        });
+
     </script>
     <script src="./js/main.js"></script>
 </body>

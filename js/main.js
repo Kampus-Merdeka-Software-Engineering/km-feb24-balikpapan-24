@@ -15,37 +15,63 @@ function loadIndividualChart(dataset, type){
     
 
         // Nama-nama data dummy yang akan digunakan untuk memfilter dataset
-        let dummyName = ['pizza order', 'revenue'];
+        let dummyName = chartParameters.nameSelections;
 
-        // Iterasi melalui setiap label dalam dataset
-        for(let i = 0; i < dataset.labels.length; i++){
-            // Memeriksa apakah label saat ini termasuk dalam rentang yang diinginkan
-            if(range.includes(dataset.labels[i].toLowerCase())){
-                let individualData = [];
-                let individualLabel = [];
-                let individualUnit = [];
+        if(chartParameters.chartDisplayType == 0){
 
-                // Iterasi melalui setiap dataset dalam dataset
-                for(let j = 0; j < dataset.datasets.length; j++){
-                    // Memeriksa apakah nama dataset saat ini termasuk dalam data dummy yang ditentukan
-                    if(dummyName.includes(dataset.datasets[j].name.toLowerCase())){
-                        // Menambahkan data, label, dan unit dataset ke dalam array individu
-                        individualData.push(dataset.datasets[j].data[i]);
-                        individualLabel.push(dataset.datasets[j].name);
-                        individualUnit.push(dataset.datasets[j].unit);
+            data1 = []
+
+            for(let i = 0; i<dataset.datasets.length; i++){
+
+                if(dummyName.includes(dataset.datasets[i].name.toLowerCase())){
+                    let individualChartDataset = {
+                        label: dataset.datasets[i].name + ' dalam ' + dataset.datasets[i].unit , // Label untuk dataset
+                        data: dataset.datasets[i].data, // Nilai data untuk dataset
+                        borderWidth: 0 // Menetapkan lebar border menjadi 0
                     };
+                    data1.push(individualChartDataset);
                 };
+            };
+            let name = ' ';
+            let labels = dataset.labels;
+            let data = data1;
+            let unit = ' '
+            let charlets = new Charx(type, name, labels, data, unit, chartParameters.chartDisplayType)
 
-                // Menentukan jenis grafik, nama, label, data, dan unit untuk grafik individual
-                let name = dataset.labels[i];
-                let labels = individualLabel;
-                let data = individualData;
-                let unit = individualUnit;
-                let charlets = new Charx(type, name, labels, data, unit)
+            mainCharts.push(charlets);
 
-                mainCharts.push(charlets);
+        }else{
+            // Iterasi melalui setiap label dalam dataset
+            for(let i = 0; i < dataset.labels.length; i++){
+                // Memeriksa apakah label saat ini termasuk dalam rentang yang diinginkan
+                if(range.includes(dataset.labels[i].toLowerCase())){
+                    let individualData = [];
+                    let individualLabel = [];
+                    let individualUnit = [];
+
+                    // Iterasi melalui setiap dataset dalam dataset
+                    for(let j = 0; j < dataset.datasets.length; j++){
+                        // Memeriksa apakah nama dataset saat ini termasuk dalam data dummy yang ditentukan
+                        if(dummyName.includes(dataset.datasets[j].name.toLowerCase())){
+                            // Menambahkan data, label, dan unit dataset ke dalam array individu
+                            individualData.push(dataset.datasets[j].data[i]);
+                            individualLabel.push(dataset.datasets[j].name);
+                            individualUnit.push(dataset.datasets[j].unit);
+                        };
+                    };
+
+                    // Menentukan jenis grafik, nama, label, data, dan unit untuk grafik individual
+                    let name = dataset.labels[i];
+                    let labels = individualLabel;
+                    let data = individualData;
+                    let unit = individualUnit;
+                    let charlets = new Charx(type, name, labels, data, unit, chartParameters.chartDisplayType)
+                   
+                    mainCharts.push(charlets);
+                };
             };
         };
+
     }else{
         // Menampilkan pesan kesalahan jika dataset belum dimuat
         alert("dataset error");

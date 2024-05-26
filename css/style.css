@@ -96,6 +96,27 @@ body header section div {
     flex-direction: column;
 }
 
+#name_selection p{
+    transition: 0.3s;
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    color: var(--merah);
+    background-color: var(--beige);
+    cursor: pointer;
+}
+
+#name_selection p:hover {
+    background-color: var(--oranye); 
+    color: white;
+}
+
+#name_selection .highlight1{
+    background-color: var(--oranye); 
+    color: white;
+}
+
+
 body header section div:nth-child(n + 5) {
     padding: 5px 16px; 
 }
@@ -110,6 +131,10 @@ body header section div select {
     color: var(--merah); 
     cursor: pointer; 
     transition: all 0.3s ease; 
+    background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><path fill="var(--merah)" d="M7 10l5 5 5-5z"/></svg>'); /* Custom arrow */
+    background-repeat: no-repeat; /* Do not repeat the background image */
+    background-position: right 10px center; /* Position the background image */
+    background-size: 16px 16px; /* Size of the background image */
 }
 
 body header section div select:hover {
@@ -142,7 +167,7 @@ body header section div input::-webkit-slider-thumb {
 
 body header section div button{
     padding: 10px;
-    margin: 0px -1px;
+    margin: 3px -1px;
     font-size: 16px;
     color: var(--merah); 
     background-color: var(--beige);
@@ -157,7 +182,7 @@ body header section div button:hover {
     color: white;
 }
 
-body header section div label {
+body header section div label,span {
     font-size: 14px;
     font-weight: bold;
     margin-bottom: 2px;

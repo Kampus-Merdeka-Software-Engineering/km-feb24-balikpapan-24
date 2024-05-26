@@ -7,6 +7,10 @@ function toggleDisplay(element) {
   };
 };
 
+function toggleColor(element) {
+  element.classList.toggle('highlight1');
+};
+
 
 // Fungsi asinkron untuk mengambil data dari tautan yang diberikan dan mem-parsingnya sebagai JSON
 async function fetch_master(luink) {
@@ -17,7 +21,7 @@ async function fetch_master(luink) {
 };
 
 // Fungsi untuk memodifikasi struktur dataset grafik
-function chartDatasetModifier(charx){
+function multiChartDatasetModifier(charx){
 let chartDataset = []; // Array untuk menyimpan dataset grafik yang dimodifikasi
 for(let i = 0; i < charx.data.length; i++){
   // Membuat objek dataset individu dengan properti label, data, dan borderWidth
@@ -28,8 +32,11 @@ for(let i = 0; i < charx.data.length; i++){
   };
   chartDataset.push(individualChartDataset); // Menambahkan objek dataset individu ke dalam array chartDataset
 };
+
 return chartDataset; // Mengembalikan dataset grafik yang dimodifikasi
 };
+
+
 
 // Fungsi untuk membuat grafik baru menggunakan pustaka Chart.js
 function makeChart(e, charx) {
@@ -38,20 +45,40 @@ function makeChart(e, charx) {
   container.appendChild(canvas); // Meletakkan canvas ke dalam section
   e.appendChild(container); // Meletakkan section ke dalam elemen yang ditentukan
 
-  new Chart(canvas, { // Membuat instance Chart baru dengan elemen canvas
-  type: charx.type, // Menetapkan jenis grafik
-  data: {
-    labels: [charx.name], // Menetapkan label untuk grafik
-    datasets: chartDatasetModifier(charx) // Memodifikasi dataset menggunakan fungsi chartDatasetModifier
-  },
-  options: {
-    scales: {
-      y: {
-        beginAtZero: true // Menetapkan sumbu y untuk dimulai dari nol
+  if(charx.displayType == 1){
+    new Chart(canvas, { // Membuat instance Chart baru dengan elemen canvas
+    type: charx.type, // Menetapkan jenis grafik
+    data: {
+      labels: [charx.name], // Menetapkan label untuk grafik
+      datasets: multiChartDatasetModifier(charx) // Memodifikasi dataset menggunakan fungsi chartDatasetModifier
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true // Menetapkan sumbu y untuk dimulai dari nol
+        }
       }
     }
-  }
-}); 
+  }); 
+
+  }else{
+  new Chart(canvas, {
+    type: charx.type,
+    data: {
+      labels: charx.labels,
+      datasets: charx.data
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+  };
+
 
 
 };
@@ -70,12 +97,13 @@ function convertRangeToLabels(labels, min, max) {
 }
 
 // Fungsi konstruktor untuk membuat objek Charx yang mewakili sebuah grafik
-function Charx(type, name, labels, data, unit){
+function Charx(type, name, labels, data, unit, displayType){
 this.type = type; // Jenis grafik
 this.name = name; // Nama grafik
 this.labels = labels; // Label untuk data grafik
 this.data = data; // Nilai data untuk grafik
 this.unit = unit; // Unit untuk data grafik
+this.displayType = displayType; //tipe penampilan chart
 };
 
 // Fungsi untuk menghapus semua bagian grafik dari sebuah elemen kontainer

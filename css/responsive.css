@@ -9,7 +9,9 @@
 
 @media screen and (orientation:portrait) {
     body header section {
-        width: 50vw;
+        width: 45vw;
+        top: 150px;
+        overflow-y: auto;
     }
     body main{
         width: 100%;
