@@ -89,7 +89,6 @@ function convertRangeToLabels(labels, min, max) {
 
   let result = []; // Array untuk menyimpan hasil
   // Melakukan loop dari minMonth hingga maxMonth dan menambahkan nama bulan yang sesuai ke dalam array result
-  console.log(labels)
   for (let i = min; i <= max; i++) {
       result.push(labels[i - 1].toLowerCase()); // Menyesuaikan indeks karena array dimulai dari 0
   }
