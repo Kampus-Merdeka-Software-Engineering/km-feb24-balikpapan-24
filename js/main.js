@@ -19,25 +19,37 @@ function loadIndividualChart(dataset, type){
 
         if(chartParameters.chartDisplayType == 0){
 
-            data1 = []
+            let data1 = [] //menampung data untuk dataset 1 chart
+            let labels1 = []; //menampung label untuk 1 chart
 
+            //memasukkan label sesuai filter
+            for(let j = chartParameters.minValue-1; j<chartParameters.maxValue; j++){
+                labels1.push(dataset.labels[j]);
+            };
+
+            //memasukkan dataset sesuai filter
             for(let i = 0; i<dataset.datasets.length; i++){
-
+                let datas = [];
                 if(dummyName.includes(dataset.datasets[i].name.toLowerCase())){
+                    for(let j = chartParameters.minValue-1; j<chartParameters.maxValue; j++){
+                        datas.push(dataset.datasets[i].data[j]);
+                    };
+
                     let individualChartDataset = {
                         label: dataset.datasets[i].name + ' dalam ' + dataset.datasets[i].unit , // Label untuk dataset
-                        data: dataset.datasets[i].data, // Nilai data untuk dataset
+                        data: datas, // Nilai data untuk dataset
                         borderWidth: 0 // Menetapkan lebar border menjadi 0
                     };
                     data1.push(individualChartDataset);
                 };
             };
             let name = ' ';
-            let labels = dataset.labels;
+            let labels = labels1
             let data = data1;
             let unit = ' '
             let charlets = new Charx(type, name, labels, data, unit, chartParameters.chartDisplayType)
 
+            //memasukkan data 1 chart ke array charts
             mainCharts.push(charlets);
 
         }else{
