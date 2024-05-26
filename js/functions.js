@@ -7,6 +7,7 @@ function toggleDisplay(element) {
   };
 };
 
+
 // Fungsi asinkron untuk mengambil data dari tautan yang diberikan dan mem-parsingnya sebagai JSON
 async function fetch_master(luink) {
   let x = await fetch(luink); // Mengambil data dari tautan yang diberikan
@@ -51,18 +52,19 @@ function makeChart(e, charx) {
     }
   }
 }); 
+
+
 };
 
 // Fungsi untuk mengonversi rentang nomor bulan menjadi nama bulan yang sesuai dalam Bahasa Indonesia
-function convertRangeToMonth(minMonth, maxMonth) {
-  const monthNames = [ // Array nama bulan dalam Bahasa Indonesia
-      'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
-      'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
-  ];
-  const result = []; // Array untuk menyimpan hasil
+function convertRangeToLabels(labels, min, max) {
+
+
+  let result = []; // Array untuk menyimpan hasil
   // Melakukan loop dari minMonth hingga maxMonth dan menambahkan nama bulan yang sesuai ke dalam array result
-  for (let i = minMonth; i <= maxMonth; i++) {
-      result.push(monthNames[i - 1]); // Menyesuaikan indeks karena array dimulai dari 0
+  console.log(labels)
+  for (let i = min; i <= max; i++) {
+      result.push(labels[i - 1].toLowerCase()); // Menyesuaikan indeks karena array dimulai dari 0
   }
   return result; // Mengembalikan array nama bulan
 }
@@ -83,3 +85,16 @@ sections.forEach(section => {
     section.remove(); // Menghapus setiap section dari kontainer
 });
 };
+
+//mengubah range
+function setRangeLimits(input, min, max) {
+    input.min = min;
+    input.max = max;
+    chartParameters.minValue = min;
+    chartParameters.maxValue = max;
+}
+
+function setLabelData(datasetIndex, val){
+  return dataset[datasetIndex].labels[val-1];
+
+}

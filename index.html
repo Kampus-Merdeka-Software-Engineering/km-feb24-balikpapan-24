@@ -33,12 +33,30 @@
         <section>
             <h2>Halaman Tabel</h2>
             <div>
-                <label>Bulan Minimal: 1</label>
+                <label>Pilih Jenis Filter</label>
+                <select>
+                    <option value="0">Jam</option>
+                    <option value="1">Hari</option>
+                    <option value="2" selected>Bulan</option>
+                    <option value="3">Size</option>
+                </select>
+            </div>
+            <div>
+                <label>Bulan Minimal: Januari</label>
                 <input type="range" min="1" max="12" value="1">
             </div>
             <div>
-                <label>Bulan Maksimal: 12</label>
+                <label>Bulan Maksimal: Desember</label>
                 <input type="range" min="1" max="12" value="12">
+            </div>
+            <div>
+                <button>Tambah Chart</button>
+            </div>
+            <div>
+                <button>Tampilkan Chart</button>
+            </div>
+            <div>
+                <button>Hapus Semua Chart</button>
             </div>
         </section>
     </header>
@@ -56,9 +74,10 @@
         <p>Website by <a href="https://example.com" target="_blank">Team 24 Balikpapan Ilmu Padi Kawan</a></p>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="./js/functions.js"></script>
-    <script defer>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" ></script>
+    <script src="./js/functions.js" ></script>
+    <script src="./js/load.js" ></script>
+    <script>
         // Menambahkan elemen main
         let mainFrame = document.querySelector('body main');
 
@@ -71,31 +90,32 @@
         let sidebarLabel = []
 
         // Dataset and parameters
-        let datasetMonth; 
+        let dataset = []; 
         let datasetLoaded = false; 
-        let charts;
+        let mainCharts = [];
 
         let pageParameters = {
             pageWidth: 100, 
         }
 
         let chartParameters = {
-            minMonth: 1, 
-            maxMonth: 12
+            datasetIndex: 2,
+            minValue: 1, 
+            maxValue: 12
         }
 
         for(let i = 0; i < sideBars.length; i++) {
             navLists[i].onclick = function() {
                 toggleDisplay(sideBars[i]);
             };
-            sidebarInput[i] = sideBars[i].querySelectorAll('input');
+            sidebarInput[i] = sideBars[i].querySelectorAll('input, select, button');
             sidebarLabel[i] = sideBars[i].querySelectorAll('label');
         }
 
         // Nama label 
         let labelNames = [
             ['Lebar Halaman'],
-            ['Bulan Minimal', 'Bulan Maksimal']
+            ['Pilih Jenis Filter', 'Bulan Minimal', 'Bulan Maksimal']
         ]
 
         // Menambahkan label responsif dan fungsi pada setiap input sidebar
@@ -107,18 +127,68 @@
         }
 
         // Sidebar kanan
+        //mengatur jenis filter
         sidebarInput[1][0].oninput = function() {
-            chartParameters.minMonth = parseInt(sidebarInput[1][0].value);
-            sidebarLabel[1][0].innerHTML = labelNames[1][0] + ": " + chartParameters.minMonth;
-            loadMonthlyChart(mainFrame, datasetMonth);
+            let val = parseInt(sidebarInput[1][0].value);
+            chartParameters.datasetIndex = val;
+
+            switch (val) {
+                case 0:
+                    labelNames[1][1] = "Jam Minimal"; labelNames[1][2] = "Jam Maksimal"; 
+                    setRangeLimits(sidebarInput[1][1], 9, 23);
+                    setRangeLimits(sidebarInput[1][2], 9, 23);
+                    break;
+                case 1:
+                    labelNames[1][1] = "Hari Minimal"; labelNames[1][2] = "Hari Maksimal"; 
+                    setRangeLimits(sidebarInput[1][1], 1, 7);
+                    setRangeLimits(sidebarInput[1][2], 1, 7);
+                    break;
+                case 2:
+                    labelNames[1][1] = "Bulan Minimal"; labelNames[1][2] = "Bulan Maksimal"; 
+                    setRangeLimits(sidebarInput[1][1], 1, 12);
+                    setRangeLimits(sidebarInput[1][2], 1, 12);
+                    break;
+                case 3:
+                    labelNames[1][1] = "Ukuran Minimal"; labelNames[1][2] = "Ukuran Maksimal";  
+                    setRangeLimits(sidebarInput[1][1], 1, 4);
+                    setRangeLimits(sidebarInput[1][2], 1, 4);
+                    break;
+                default:
+                    console.log("No valid option selected");
+                    // Handle any unexpected cases
+                    break;
+            };
+            sidebarLabel[1][1].innerHTML = labelNames[1][1] + ": " + setLabelData(sidebarInput[1][0].value, sidebarInput[1][1].value);
+            sidebarLabel[1][2].innerHTML = labelNames[1][2] + ": " + setLabelData(sidebarInput[1][0].value, sidebarInput[1][2].value);
+            sidebarInput[1][1].value = chartParameters.minValue;
+            sidebarInput[1][2].value = chartParameters.maxValue;
+
         };
 
+
         sidebarInput[1][1].oninput = function() {
-            chartParameters.maxMonth = parseInt(sidebarInput[1][1].value);
-            sidebarLabel[1][1].innerHTML = labelNames[1][1] + ": " + chartParameters.maxMonth;
-            loadMonthlyChart(mainFrame, datasetMonth);
+            chartParameters.minValue = parseInt(sidebarInput[1][1].value);
+            sidebarLabel[1][1].innerHTML = labelNames[1][1] + ": " + setLabelData(sidebarInput[1][0].value, sidebarInput[1][1].value);
+            
+        };
+
+        sidebarInput[1][2].oninput = function() {
+            chartParameters.maxValue = parseInt(sidebarInput[1][2].value);
+            sidebarLabel[1][2].innerHTML = labelNames[1][2] + ": " + setLabelData(sidebarInput[1][0].value, sidebarInput[1][2].value);
+         
+        };
+
+        sidebarInput[1][3].onclick = function() {
+            loadIndividualChart(dataset[chartParameters.datasetIndex], 'bar');
+        };
+        sidebarInput[1][4].onclick = function() {
+            renderCharts(mainFrame);
+        };
+        sidebarInput[1][5].onclick = function() {
+            removeAllChartSection(mainFrame);
+            mainCharts = [];
         };
     </script>
-    <script defer src="./js/main.js"></script>
+    <script src="./js/main.js"></script>
 </body>
 </html>

@@ -11,5 +11,25 @@
     body header section {
         width: 50vw;
     }
-
+    body main{
+        width: 100%;
+    }
+    body header {
+        justify-content: space-evenly;
+    }
+    body header h1 {
+        font-size: 20px;
+    }
+    body header nav ul {
+        flex-direction: column;
+        margin-right: 0px;
+    }
+    body header nav ul li {
+        margin-bottom: 8px; 
+        border-radius: 4px;
+        font-size: 12px;
+    }
+    body header nav ul li:last-child {
+        margin-bottom: 0px;
+    }
 }

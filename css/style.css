@@ -19,14 +19,16 @@ body header {
     justify-content: space-between;
     position: sticky;
     top: 0;
-    background-color: #4A90E2;
+    background-color: var(--oranye);
     color: white;
     padding: 10px 2vw;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    min-height: 10vh;
 }
 
 body header h1 {
     margin: 10px 0;
+    font-size: 24px;
 }
 
 body header nav {
@@ -44,21 +46,27 @@ body header nav ul {
 
 body header nav ul li {
     margin-right: 10px;
+    font-size: 20px;
+    color: var(--merah); 
+    background-color: var(--beige);
+    border-radius: 8px;
     cursor: pointer;
-    padding: 5px 10px;
+    padding: 7px 15px;
     transition: background-color 0.3s, color 0.3s;
 }
 
 body header nav ul li:hover {
-    background-color: #357ABD;
-    border-radius: 4px;
+    color: white;
+    background-color: var(--kuning);
 }
 
+/* Sidebar */
 body header section {
     position: absolute;
     display: none;
-    background-color: white;
+    background-color: var(--kuning);
     top: 60px;
+    left: 1vw;
     max-width: 50vw;
     min-width: 200px;
     height: 100vh;
@@ -68,7 +76,7 @@ body header section {
 }
 
 body header section:nth-of-type(2) {
-    right: 0;
+    right: 1vw;
     left: auto;
 }
 
@@ -76,25 +84,92 @@ body header section h2 {
     text-align: center;
     padding: 20px;
     border-bottom: 1px solid #ddd;
-    background-color: #2969a5;
+    background-color: var(--oranye);
     margin: 0;
 }
 
+/* Sidebar items Styling */
 body header section div {
     display: flex;
-    padding: 16px;
+    padding: 14px;
     flex-direction: column;
+}
+
+body header section div:nth-child(n + 5) {
+    padding: 5px 16px; 
+}
+
+body header section div select {
+    appearance: none; 
+    padding: 10px 20px; 
+    font-size: 16px; 
+    border: 2px solid var(--krem); 
+    border-radius: 10px; 
+    background-color: var(--beige); 
+    color: var(--merah); 
+    cursor: pointer; 
+    transition: all 0.3s ease; 
+}
+
+body header section div select:hover {
+    background-color: var(--oranye); 
+    color: white;
+}
+
+body header section div input {
+    appearance: none;
+    cursor: pointer;
+    background: white; 
+    outline: none;
+    transition: 0.3s ease;
+    transition: opacity .2s;
+    border-radius: 5px;
+}
+
+body header section div input:hover {
+    background-color: var(--beige); 
+}
+
+body header section div input::-webkit-slider-thumb {
+  appearance: none;
+  border-radius: 5px;
+  width: 25px;
+  height: 25px;
+  background: var(--oranye);
+  cursor: pointer;
+}
+
+body header section div button{
+    padding: 10px;
+    margin: 0px -1px;
+    font-size: 16px;
+    color: var(--merah); 
+    background-color: var(--beige);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+body header section div button:hover {
+    background-color: var(--oranye); 
+    color: white;
 }
 
 body header section div label {
     font-size: 14px;
-    margin-bottom: 8px;
-    color: #555;
+    font-weight: bold;
+    margin-bottom: 2px;
+    color: var(--merah); 
+
 }
 
-body header section div input[type="range"] {
-    cursor: pointer;
-}
+
+
+
+
+
+
 
 /* Main Content Styling */
 body main {
@@ -105,12 +180,12 @@ body main {
     padding: 20px;
     overflow-y: auto;
     overflow-x: hidden;
-    width: 100%;
+    width: 85%;
     align-self: center;
 }
 
 body main section {
-    border: 1px solid #e41e98;
+    border: 1px solid var(--merah);
     background-color: white;
     padding: 20px;
     border-radius: 4px;
@@ -120,7 +195,7 @@ body main section {
 
 /* Footer Styling */
 body footer {
-    background-color: #4A90E2;
+    background-color: var(--kuning);
     color: white;
     padding: 20px 2vw;
     text-align: center;
@@ -133,7 +208,7 @@ body footer p {
 }
 
 body footer a {
-    color: #FFD700;
+    color: var(--merah);
     text-decoration: none;
     transition: color 0.3s;
 }

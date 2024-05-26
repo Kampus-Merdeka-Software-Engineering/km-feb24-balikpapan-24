@@ -9,3 +9,12 @@ canvas {
     width: 100% !important;
     height: 100% !important;
 }
+
+:root{
+    --krem: #fbae89;
+    --merah: #b61500;
+    --oranye: #dc6b29;
+    --kuning: #ffac0e;
+    --beige: #f3c681;
+
+}
