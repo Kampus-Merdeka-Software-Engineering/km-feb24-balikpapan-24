@@ -14,7 +14,7 @@
         {
             "name" : "Pizza Order ID",
             "unit" : "Unique Orders",
-            "data": [10490, 11159, 127364, 544, 28]
+            "data": [10490, 11159, 12736, 544, 28]
         }
     ]
     }
