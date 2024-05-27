@@ -28,6 +28,10 @@
                 <label>Lebar Halaman: 100%</label>
                 <input type="range" min="10" max="100" value="100">
             </div>
+            <div>
+                <label>Tinggi Sidebar: 100vh</label>
+                <input type="range" min="40" max="200" value="100">
+            </div>
         </section>
         
         <section>
@@ -107,6 +111,7 @@
 
         let pageParameters = {
             pageWidth: 100, 
+            sidebarWidth: 100
         }
 
         let chartParameters = {
@@ -127,7 +132,7 @@
 
         // Nama label 
         let labelNames = [
-            ['Lebar Halaman'],
+            ['Lebar Halaman', 'Tinggi Sidebar'],
             ['Pilih Jenis Filter', 'Bulan Minimal', 'Bulan Maksimal']
         ]
 
@@ -137,7 +142,13 @@
             pageParameters.pageWidth = parseInt(sidebarInput[0][0].value);
             mainFrame.style.width = pageParameters.pageWidth + "%";
             sidebarLabel[0][0].innerHTML = labelNames[0][0] + ": " + pageParameters.pageWidth + "%";
-        }
+        };
+        sidebarInput[0][1].oninput = function() {
+            pageParameters.sidebarWidth = parseInt(sidebarInput[0][1].value);
+            sideBars[0].style.height = pageParameters.sidebarWidth + "vh";
+            sideBars[1].style.height = pageParameters.sidebarWidth + "vh";
+            sidebarLabel[0][1].innerHTML = labelNames[0][1] + ": " + pageParameters.sidebarWidth + "vh";
+        };
 
         // Sidebar kanan
         //mengatur jenis filter

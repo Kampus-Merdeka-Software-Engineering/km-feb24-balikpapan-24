@@ -67,11 +67,10 @@ body header section {
     display: none;
     background-color: var(--kuning);
     top: 100px;
-    padding-bottom: 300vh;
     left: 1vw;
     max-width: 50vw;
     min-width: 200px;
-    height: auto;
+    height: 100vh;
     border: 1px solid #ddd;
     z-index: 10;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
