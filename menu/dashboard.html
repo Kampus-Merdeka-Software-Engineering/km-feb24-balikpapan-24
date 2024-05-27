@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kelompok 24 Balikpapan 2024</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+    <header>
+        <h1>Pizza Sales Report Team 24</h1>
+        <nav>
+            <ul>
+                <li>Settings</li>
+                <li>Graphs</li>
+                <li>saya jeje</li>
+            </ul> 
+        </nav>
+        
+        <section>
+            <h2>Pengaturan</h2>
+            <div>
+                <label>Lebar Halaman: 100%</label>
+                <input type="range" min="10" max="100" value="100">
+            </div>
+            <div>
+                <label>Tinggi Sidebar: 100vh</label>
+                <input type="range" min="40" max="200" value="100">
+            </div>
+        </section>
+        
+        <section>
+            <h2>Halaman Tabel</h2>
+            <div>
+                <label>Pilih Jenis Filter</label>
+                <select>
+                    <option value="0">Jam</option>
+                    <option value="1">Hari</option>
+                    <option value="2" selected>Bulan</option>
+                    <option value="3">Size</option>
+                </select>
+            </div>
+            <div>
+                <label>Bulan Minimal: Januari</label>
+                <input type="range" min="1" max="12" value="1">
+            </div>
+            <div>
+                <label>Bulan Maksimal: Desember</label>
+                <input type="range" min="1" max="12" value="12">
+            </div>
+            <div>
+                <label>Pilih Jenis Chart</label>
+                <select>
+                    <option value="0">Single Chart</option>
+                    <option value="1">Multi Chart</option>
+                </select>
+            </div>
+            <div id="name_selection">
+                <span>Seleksi Nama</span>
+                <p>Revenue</p>
+                <p>Pizza Order</p>
+                <p>Pizza Order ID</p>
+            </div>
+
+            <div>
+                <span>Atur Chart</span>
+                <button>Tambah Chart</button>
+                <button>Refresh Chart</button>
+                <button>Hapus Semua Chart</button>
+            </div>
+        </section>
+    </header>
+
+    <main></main>
+    <aside></aside>
+    <footer>
+        <p>&copy; 2024 Kelompok 24 Balikpapan.</p>
+        <div class="social-icons">
+            <a href="https://www.facebook.com" class="facebook" target="_blank"></a>
+            <a href="https://www.twitter.com" class="twitter" target="_blank"></a>
+            <a href="https://www.instagram.com" class="instagram" target="_blank"></a>
+            <a href="https://www.linkedin.com" class="linkedin" target="_blank"></a>
+        </div>
+        <p>Website by <a href="https://example.com" target="_blank">Team 24 Balikpapan Ilmu Padi Kawan</a></p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" ></script>
+    <script src="../js/functions.js" ></script>
+    <script src="../js/load.js" ></script>
+    <script>
+        // Menambahkan elemen main
+        let mainFrame = document.querySelector('body main');
+
+        // Mendapatkan elemen dom navbar dan sidebar
+        const navLists = document.querySelector('body header nav ul').querySelectorAll('li');
+        const sideBars = document.querySelector('body header').querySelectorAll('section');
+
+        // Menambahkan fungsi klik toggle display sekaligus mendapatkan elemen dom input di setiap sidebar
+        let sidebarInput = [];
+        let sidebarLabel = [];
+
+        // Dataset and parameters
+        let dataset = []; 
+        let datasetLoaded = false; 
+        let mainCharts = [];
+
+        let pageParameters = {
+            pageWidth: 100, 
+            sidebarWidth: 100
+        }
+
+        let chartParameters = {
+            datasetIndex: 2,
+            minValue: 1, 
+            maxValue: 12,
+            chartDisplayType: 0,
+            nameSelections: []
+        }
+
+        for(let i = 0; i < sideBars.length; i++) {
+            navLists[i].onclick = function() {
+                toggleDisplay(sideBars[i]);
+            };
+            sidebarInput[i] = sideBars[i].querySelectorAll('input, select, button');
+            sidebarLabel[i] = sideBars[i].querySelectorAll('label');
+        }
+
+        // Nama label 
+        let labelNames = [
+            ['Lebar Halaman', 'Tinggi Sidebar'],
+            ['Pilih Jenis Filter', 'Bulan Minimal', 'Bulan Maksimal']
+        ]
+
+        // Menambahkan label responsif dan fungsi pada setiap input sidebar
+        // Sidebar kiri
+        sidebarInput[0][0].oninput = function() {
+            pageParameters.pageWidth = parseInt(sidebarInput[0][0].value);
+            mainFrame.style.width = pageParameters.pageWidth + "%";
+            sidebarLabel[0][0].innerHTML = labelNames[0][0] + ": " + pageParameters.pageWidth + "%";
+        };
+        sidebarInput[0][1].oninput = function() {
+            pageParameters.sidebarWidth = parseInt(sidebarInput[0][1].value);
+            sideBars[0].style.height = pageParameters.sidebarWidth + "vh";
+            sideBars[1].style.height = pageParameters.sidebarWidth + "vh";
+            sidebarLabel[0][1].innerHTML = labelNames[0][1] + ": " + pageParameters.sidebarWidth + "vh";
+        };
+
+        // Sidebar kanan
+        //mengatur jenis filter
+        sidebarInput[1][0].oninput = function() {
+            let val = parseInt(sidebarInput[1][0].value);
+            chartParameters.datasetIndex = val;
+
+            setRangeLimits(sidebarInput, [1,1,2], dataset[chartParameters.datasetIndex]);
+
+            switch (val) {
+                case 0:
+                    labelNames[1][1] = "Jam Minimal"; labelNames[1][2] = "Jam Maksimal"; 
+                    break;
+                case 1:
+                    labelNames[1][1] = "Hari Minimal"; labelNames[1][2] = "Hari Maksimal"; 
+                    break;
+                case 2:
+                    labelNames[1][1] = "Bulan Minimal"; labelNames[1][2] = "Bulan Maksimal"; 
+                    break;
+                case 3:
+                    labelNames[1][1] = "Ukuran Minimal"; labelNames[1][2] = "Ukuran Maksimal";  
+                    break;
+                default:
+                    console.log("No valid option selected");
+                    // Handle any unexpected cases
+                    break;
+            };
+            sidebarLabel[1][1].innerHTML = labelNames[1][1] + ": " + setLabelData(sidebarInput[1][0].value, sidebarInput[1][1].value);
+            sidebarLabel[1][2].innerHTML = labelNames[1][2] + ": " + setLabelData(sidebarInput[1][0].value, sidebarInput[1][2].value);
+            sidebarInput[1][1].value = chartParameters.minValue;
+            sidebarInput[1][2].value = chartParameters.maxValue;
+
+        };
+
+
+        sidebarInput[1][1].oninput = function() {
+            chartParameters.minValue = parseInt(sidebarInput[1][1].value);
+            sidebarLabel[1][1].innerHTML = labelNames[1][1] + ": " + setLabelData(sidebarInput[1][0].value, sidebarInput[1][1].value);
+            
+        };
+
+        sidebarInput[1][2].oninput = function() {
+            chartParameters.maxValue = parseInt(sidebarInput[1][2].value);
+            sidebarLabel[1][2].innerHTML = labelNames[1][2] + ": " + setLabelData(sidebarInput[1][0].value, sidebarInput[1][2].value);
+         
+        };
+        sidebarInput[1][3].oninput = function() {
+            chartParameters.chartDisplayType = parseInt(sidebarInput[1][3].value);
+        };
+        sidebarInput[1][4].onclick = function() {
+    
+            if(chartParameters.nameSelections.length != 0){
+
+                loadIndividualChart(dataset[chartParameters.datasetIndex], 'bar');
+                renderCharts(mainFrame);
+
+            };
+
+        };
+        sidebarInput[1][5].onclick = function() {
+            renderCharts(mainFrame);
+        };
+        sidebarInput[1][6].onclick = function() {
+            removeAllChartSection(mainFrame);
+            mainCharts = [];
+        };
+
+
+
+
+
+        //seleksi nama metric
+        const name_container = document.getElementById("name_selection");
+        let inputSelections = name_container.querySelectorAll("p");
+        
+
+        function handleClick(event) {
+        
+            toggleColor(event.target);
+            chartParameters.nameSelections = [];
+
+            inputSelections.forEach(selection => {
+                if(selection.className == 'highlight1'){
+                    chartParameters.nameSelections.push(selection.innerText.toLowerCase());
+                };
+            });
+
+        };
+
+        inputSelections.forEach(selection => {
+            selection.addEventListener('click', handleClick);
+        });
+
+    </script>
+    <script src="../js/main.js"></script>
+</body>
+</html>

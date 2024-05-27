@@ -1,5 +1,5 @@
 // Memuat data dari sebuah sumber daya (diasumsikan sebagai panggilan AJAX) dan memprosesnya
-fetch_master("./dataset/datasetJam.json").then(
+fetch_master("../dataset/datasetJam.json").then(
     function (value) { 
         // Ketika data berhasil dimuat, memasukkan data ke dalam variabel datasetMonth dan menandai bahwa dataset telah dimuat
         dataset[0] = value; 
@@ -12,7 +12,7 @@ fetch_master("./dataset/datasetJam.json").then(
 );
 
 // Memuat data dari sebuah sumber daya (diasumsikan sebagai panggilan AJAX) dan memprosesnya
-fetch_master("./dataset/datasetHari.json").then(
+fetch_master("../dataset/datasetHari.json").then(
     function (value) { 
         // Ketika data berhasil dimuat, memasukkan data ke dalam variabel datasetMonth dan menandai bahwa dataset telah dimuat
         dataset[1] = value; 
@@ -26,7 +26,7 @@ fetch_master("./dataset/datasetHari.json").then(
 
 
 // Memuat data dari sebuah sumber daya (diasumsikan sebagai panggilan AJAX) dan memprosesnya
-fetch_master("./dataset/datasetBulan.json").then(
+fetch_master("../dataset/datasetBulan.json").then(
     function (value) { 
         // Ketika data berhasil dimuat, memasukkan data ke dalam variabel datasetMonth dan menandai bahwa dataset telah dimuat
         dataset[2] = value; 
@@ -40,7 +40,7 @@ fetch_master("./dataset/datasetBulan.json").then(
 
 
 // Memuat data dari sebuah sumber daya (diasumsikan sebagai panggilan AJAX) dan memprosesnya
-fetch_master("./dataset/datasetSize.json").then(
+fetch_master("../dataset/datasetSize.json").then(
     function (value) { 
         // Ketika data berhasil dimuat, memasukkan data ke dalam variabel datasetMonth dan menandai bahwa dataset telah dimuat
         dataset[3] = value; 
