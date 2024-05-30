@@ -41,10 +41,12 @@
                 <select>
                     <option value="0">Jam</option>
                     <option value="1">Hari</option>
-                    <option value="2" selected>Bulan</option>
-                    <option value="3">Size</option>
-                    <option value="4">Category</option>
-                    <option value="5">Type</option>
+                    <option value="2">Hari Bulan</option>
+                    <option value="3" selected>Bulan</option>
+                    <option value="4">Quarter</option>
+                    <option value="5">Size</option>
+                    <option value="6">Category</option>
+                    <option value="7">Type</option>
                 </select>
             </div>
             <div>
@@ -176,10 +178,22 @@
                     labelNames[1][1] = "Hari Minimal"; labelNames[1][2] = "Hari Maksimal"; 
                     break;
                 case 2:
-                    labelNames[1][1] = "Bulan Minimal"; labelNames[1][2] = "Bulan Maksimal"; 
+                    labelNames[1][1] = "Hari Bulan Minimal"; labelNames[1][2] = "Hari Bulan Maksimal"; 
                     break;
                 case 3:
+                    labelNames[1][1] = "Bulan Minimal"; labelNames[1][2] = "Bulan Maksimal";  
+                    break;
+                case 4:
+                    labelNames[1][1] = "Quarter Minimal"; labelNames[1][2] = "Quarter Maksimal";  
+                    break;
+                case 5:
                     labelNames[1][1] = "Ukuran Minimal"; labelNames[1][2] = "Ukuran Maksimal";  
+                    break;
+                case 6:
+                    labelNames[1][1] = "Kategori Minimal"; labelNames[1][2] = "Kategori Maksimal";  
+                    break;
+                case 7:
+                    labelNames[1][1] = "Tipe Minimal"; labelNames[1][2] = "Tipe Maksimal";  
                     break;
                 default:
                     console.log("No valid option selected");
