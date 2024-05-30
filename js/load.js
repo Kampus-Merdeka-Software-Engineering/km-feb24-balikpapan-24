@@ -5,7 +5,7 @@ fetch_master("../dataset/all.json").then(
         allData = value; 
         datasetLoaded = true;
         dataset[0] = processData(allData, 'order_hour');
-        dataset[1] = processData(allData, 'order_day_name');
+        dataset[1] = processData(allData, 'order_day_week');
         dataset[2] = processData(allData, 'order_month');
         dataset[3] = processData(allData, 'pizza_size');
         dataset[4] = processData(allData, 'pizza_category');
