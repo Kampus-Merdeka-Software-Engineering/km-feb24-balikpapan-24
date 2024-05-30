@@ -10,29 +10,53 @@
 
 @media screen and (orientation:portrait) {
     body header section {
-        width: 45vw;
+        width: 49vw;
+        height: 65vh;
         top: 150px;
         overflow-y: auto;
     }
     body main{
         width: 100%;
+        grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
+        grid-column-gap: 0.5rem;
+        grid-row-gap: 0.5rem;
+        padding: 5px;
+        width: 100%;
     }
+
     body header {
         justify-content: space-evenly;
     }
     body header h1 {
-        font-size: 20px;
+        font-size: 24px;
+    }
+    body header nav {
+        display: flex;
+        justify-content: flex-start;
+        margin-right: 0px;
+        padding-left: 0px;
     }
     body header nav ul {
         flex-direction: column;
         margin-right: 0px;
+        padding-right: 0px;
+        display: none;
     }
     body header nav ul li {
         margin-bottom: 8px; 
         border-radius: 4px;
-        font-size: 12px;
+        font-size: 14px;
+        text-align: center;
     }
     body header nav ul li:last-child {
         margin-bottom: 0px;
+    }
+    body header section div select{
+        appearance: none;
+        -webkit-appearance: none; /* for Safari */
+        -moz-appearance: none; /* for Firefox */
+    }
+    body header section div select option{
+        font-size: 12px;
     }
 }

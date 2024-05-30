@@ -7,8 +7,20 @@ function toggleDisplay(element) {
   };
 };
 
+function toggleDisplayFlex(element) {
+  if (element.style.display == 'flex') {
+       element.style.display = 'none';
+  } else {
+      element.style.display = 'flex';
+  };
+}
+
 function toggleColor(element) {
   element.classList.toggle('highlight1');
+};
+
+function toggleColor2(element) {
+  element.classList.toggle('highlight2');
 };
 
 
@@ -136,3 +148,7 @@ function setLabelData(datasetIndex, val){
   return dataset[datasetIndex].labels[val-1];
 
 };
+
+function isPortrait() {
+    return window.innerHeight > window.innerWidth;
+}

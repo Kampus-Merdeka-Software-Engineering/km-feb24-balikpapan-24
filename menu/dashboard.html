@@ -30,7 +30,7 @@
             </div>
             <div>
                 <label>Tinggi Sidebar: 100vh</label>
-                <input type="range" min="40" max="200" value="100">
+                <input type="range" min="40" max="100" value="100">
             </div>
         </section>
         
@@ -124,12 +124,20 @@
             nameSelections: []
         }
 
-        for(let i = 0; i < sideBars.length; i++) {
-            navLists[i].onclick = function() {
+        // Operasi sidebar
+        for (let i = 0; i < sideBars.length; i++) {
+            navLists[i].addEventListener('click', function() {
                 toggleDisplay(sideBars[i]);
-            };
+            });
             sidebarInput[i] = sideBars[i].querySelectorAll('input, select, button');
             sidebarLabel[i] = sideBars[i].querySelectorAll('label');
+        }
+
+        // Operasi warna navbar
+        for (let i = 0; i < navLists.length; i++) {
+            navLists[i].addEventListener('click', function() {
+                toggleColor2(navLists[i]);
+            });
         }
 
         // Nama label 
@@ -244,6 +252,14 @@
             selection.addEventListener('click', handleClick);
         });
 
+
+        //toggle tombol dahsboard
+        const headerH1 = document.querySelector('body header h1');
+        const headerUlLi = document.querySelector('body header nav ul');
+
+        headerH1.onclick = function(){
+            toggleDisplayFlex(headerUlLi);
+        };
     </script>
     <script src="../js/main.js"></script>
 </body>

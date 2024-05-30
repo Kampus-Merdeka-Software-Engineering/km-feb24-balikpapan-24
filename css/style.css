@@ -30,6 +30,7 @@ body header h1 {
     margin: 10px 0;
     font-size: 24px;
     color: var(--beige);
+    cursor: pointer;
 }
 
 body header nav {
@@ -69,7 +70,6 @@ body header section {
     top: 100px;
     left: 1vw;
     max-width: 50vw;
-    min-width: 200px;
     height: 100vh;
     border: 1px solid #ddd;
     z-index: 10;
@@ -113,6 +113,11 @@ body header section div {
 
 #name_selection .highlight1{
     background-color: var(--oranye); 
+    color: white;
+}
+
+.highlight2{
+    background-color: var(--kuning); 
     color: white;
 }
 
