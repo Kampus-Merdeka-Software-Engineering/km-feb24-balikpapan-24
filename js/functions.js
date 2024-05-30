@@ -15,10 +15,12 @@ function toggleDisplayFlex(element) {
   };
 }
 
+// mengubah warna oranye
 function toggleColor(element) {
   element.classList.toggle('highlight1');
 };
 
+// mengubah warna kuning
 function toggleColor2(element) {
   element.classList.toggle('highlight2');
 };
