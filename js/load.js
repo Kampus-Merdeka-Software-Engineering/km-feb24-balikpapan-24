@@ -1,76 +1,15 @@
 // Memuat data dari sebuah sumber daya (diasumsikan sebagai panggilan AJAX) dan memprosesnya
-fetch_master("../dataset/datasetJam.json").then(
+fetch_master("../dataset/all.json").then(
     function (value) { 
         // Ketika data berhasil dimuat, memasukkan data ke dalam variabel dan menandai bahwa dataset telah dimuat
-        dataset[0] = value; 
+        allData = value; 
         datasetLoaded = true;
-    },
-    function (error) { 
-        // Menampilkan pesan kesalahan jika terjadi kesalahan saat memuat data
-        alert("Database Error!") 
-    }
-);
-
-// Memuat data dari sebuah sumber daya (diasumsikan sebagai panggilan AJAX) dan memprosesnya
-fetch_master("../dataset/datasetHari.json").then(
-    function (value) { 
-        // Ketika data berhasil dimuat, memasukkan data ke dalam variabel dan menandai bahwa dataset telah dimuat
-        dataset[1] = value; 
-        datasetLoaded = true;
-    },
-    function (error) { 
-        // Menampilkan pesan kesalahan jika terjadi kesalahan saat memuat data
-        alert("Database Error!") 
-    }
-);
-
-
-// Memuat data dari sebuah sumber daya (diasumsikan sebagai panggilan AJAX) dan memprosesnya
-fetch_master("../dataset/datasetBulan.json").then(
-    function (value) { 
-        // Ketika data berhasil dimuat, memasukkan data ke dalam variabel dan menandai bahwa dataset telah dimuat
-        dataset[2] = value; 
-        datasetLoaded = true;
-    },
-    function (error) { 
-        // Menampilkan pesan kesalahan jika terjadi kesalahan saat memuat data
-        alert("Database Error!") 
-    }
-);
-
-
-// Memuat data dari sebuah sumber daya (diasumsikan sebagai panggilan AJAX) dan memprosesnya
-fetch_master("../dataset/datasetSize.json").then(
-    function (value) { 
-        // Ketika data berhasil dimuat, memasukkan data ke dalam variabel dan menandai bahwa dataset telah dimuat
-        dataset[3] = value; 
-        datasetLoaded = true;
-    },
-    function (error) { 
-        // Menampilkan pesan kesalahan jika terjadi kesalahan saat memuat data
-        alert("Database Error!") 
-    }
-);
-
-// Memuat data dari sebuah sumber daya (diasumsikan sebagai panggilan AJAX) dan memprosesnya
-fetch_master("../dataset/datasetPizzaCategory.json").then(
-    function (value) { 
-        // Ketika data berhasil dimuat, memasukkan data ke dalam variabel dan menandai bahwa dataset telah dimuat
-        dataset[4] = value; 
-        datasetLoaded = true;
-    },
-    function (error) { 
-        // Menampilkan pesan kesalahan jika terjadi kesalahan saat memuat data
-        alert("Database Error!") 
-    }
-);
-
-// Memuat data dari sebuah sumber daya (diasumsikan sebagai panggilan AJAX) dan memprosesnya
-fetch_master("../dataset/datasetPizzaType.json").then(
-    function (value) { 
-        // Ketika data berhasil dimuat, memasukkan data ke dalam variabel dan menandai bahwa dataset telah dimuat
-        dataset[5] = value; 
-        datasetLoaded = true;
+        dataset[0] = processData(allData, 'order_hour');
+        dataset[1] = processData(allData, 'order_day_name');
+        dataset[2] = processData(allData, 'order_month');
+        dataset[3] = processData(allData, 'pizza_size');
+        dataset[4] = processData(allData, 'pizza_category');
+        dataset[5] = processData(allData, 'pizza_type');
     },
     function (error) { 
         // Menampilkan pesan kesalahan jika terjadi kesalahan saat memuat data

@@ -1,3 +1,57 @@
+let allData = [];
+
+//fungsi untuk memproses data mentah
+function processData(data, group) {
+    // Initialize the result structure
+    const result = {
+        labels: [],
+        datasets: [
+            {
+                name: "Revenue",
+                unit: "USD",
+                data: []
+            },
+            {
+                name: "Pizza Order",
+                unit: "Orders",
+                data: []
+            },
+            {
+                name: "Pizza Order ID",
+                unit: "Unique Orders",
+                data: []
+            }
+        ]
+    };
+
+    // Create a map to store the aggregated data
+    const map = {};
+
+    data.forEach(item => {
+        const key = item[group];
+        if (!map[key]) {
+            map[key] = {
+                revenue: 0,
+                orderCount: 0,
+                orderIds: new Set()
+            };
+        }
+        map[key].revenue += item.revenue;
+        map[key].orderCount += item.order_quantity;
+        map[key].orderIds.add(item.order_id);
+    });
+
+    // Populate the result object
+    for (const key in map) {
+        result.labels.push(key);
+        result.datasets[0].data.push(map[key].revenue.toFixed(3));
+        result.datasets[1].data.push(map[key].orderCount.toFixed(3));
+        result.datasets[2].data.push(map[key].orderIds.size.toFixed(3));
+    }
+
+    return result;
+}
+
 // Fungsi untuk mengalihkan tampilan properti dari elemen HTML antara 'block' dan 'none'
 function toggleDisplay(element) {
   if (element.style.display == 'block') {

@@ -100,3 +100,4 @@ function renderCharts(container){
         makeChart(container, charlets); // Menghapus setiap section dari kontainer
     });
 };
+
