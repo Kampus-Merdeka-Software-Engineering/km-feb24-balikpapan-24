@@ -64,3 +64,17 @@ fetch_master("../dataset/datasetPizzaCategory.json").then(
         alert("Database Error!") 
     }
 );
+
+// Memuat data dari sebuah sumber daya (diasumsikan sebagai panggilan AJAX) dan memprosesnya
+fetch_master("../dataset/datasetPizzaType.json").then(
+    function (value) { 
+        // Ketika data berhasil dimuat, memasukkan data ke dalam variabel datasetMonth dan menandai bahwa dataset telah dimuat
+        dataset[5] = value; 
+        datasetLoaded = true;
+    },
+    function (error) { 
+        // Menampilkan pesan kesalahan jika terjadi kesalahan saat memuat data
+        alert("Database Error!") 
+    }
+);
+
