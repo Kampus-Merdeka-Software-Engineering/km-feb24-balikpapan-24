@@ -44,13 +44,13 @@ function loadIndividualChart(dataset, type){
                 };
             };
             let name = ' ';
-            let labels = labels1;
+            let labels = translateIndex(labels1);
             let data = data1;
             let unit = ' '
             let charlets = new Charx(type, name, labels, data, unit, chartParameters.chartDisplayType)
 
             //memasukkan data 1 chart ke array charts
-            mainCharts.push(charlets);
+            mainCharts.unshift(charlets);
 
         }else{
             let translatedLabels = translateIndex(dataset.labels);
@@ -81,7 +81,7 @@ function loadIndividualChart(dataset, type){
                     let unit = individualUnit;
                     let charlets = new Charx(type, name, labels, data, unit, chartParameters.chartDisplayType)
                    
-                    mainCharts.push(charlets);
+                    mainCharts.unshift(charlets);
                 };
             };
         };
