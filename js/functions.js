@@ -207,16 +207,16 @@ function makeChart(e, charx) {
 
 };
 
-// Fungsi untuk mengonversi rentang nomor bulan menjadi nama bulan yang sesuai dalam Bahasa Indonesia
+// Fungsi untuk mengonversi rentang nomor bulan menjadi yang sesuai dalam Bahasa Indonesia
 function convertRangeToLabels(labels, min, max) {
 
 
   let result = []; // Array untuk menyimpan hasil
-  // Melakukan loop dari minMonth hingga maxMonth dan menambahkan nama bulan yang sesuai ke dalam array result
+  // Melakukan loop dari minMonth hingga maxMonth dan menambahkan yang sesuai ke dalam array result
   for (let i = min; i <= max; i++) {
       result.push(labels[i - 1].toLowerCase()); // Menyesuaikan indeks karena array dimulai dari 0
   }
-  return result; // Mengembalikan array nama bulan
+  return result; // Mengembalikan array
 }
 
 // Fungsi konstruktor untuk membuat objek Charx yang mewakili sebuah grafik
