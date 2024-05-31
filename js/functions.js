@@ -1,5 +1,3 @@
-let allData = [];
-
 //fungsi untuk memproses data mentah
 function processData(data, group) {
     // Initialize the result structure
@@ -51,6 +49,64 @@ function processData(data, group) {
 
     return result;
 }
+
+// fungsi untuk mengurutkan data yang sudah di proses
+function reorderData(data, index) {
+    // Extract the dataset based on the given index
+    let datasetToOrder = data.datasets[index].data;
+    
+    // Create an array of objects that combines labels and all datasets data
+    let combinedArray = data.labels.map((label, i) => {
+        let combinedData = { label: label };
+        data.datasets.forEach((dataset, j) => {
+            combinedData['data' + j] = dataset.data[i];
+        });
+        return combinedData;
+    });
+
+    // Sort the combined array based on the datasetToOrder values in descending order
+    combinedArray.sort((a, b) => b['data' + index] - a['data' + index]);
+
+    // Create a new structure to store the reordered labels and datasets data
+    let reorderedData = {
+        labels: [],
+        datasets: data.datasets.map(dataset => ({
+            name: dataset.name,
+            unit: dataset.unit,
+            data: []
+        }))
+    };
+
+    // Populate the reordered structure
+    combinedArray.forEach(item => {
+        reorderedData.labels.push(item.label);
+        data.datasets.forEach((dataset, j) => {
+            reorderedData.datasets[j].data.push(item['data' + j]);
+        });
+    });
+
+    return reorderedData;
+};
+
+function translateIndex(label){
+  let l = label.length;
+  let final = [];
+
+  if(l == 12){
+    for(let i = 0; i < l; i++){
+      final[i] = pageParameters.defaultMonths[label[i]-1];
+    };
+    return final;
+  }else if(l == 7){
+    for(let i = 0; i < l; i++){
+      final[i] = pageParameters.defaultDays[label[i]-1];
+    };
+    return final;
+  };
+
+  return label;
+
+};
 
 // Fungsi untuk mengalihkan tampilan properti dari elemen HTML antara 'block' dan 'none'
 function toggleDisplay(element) {
