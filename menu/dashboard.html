@@ -161,7 +161,7 @@
             let val = parseInt(sidebarInput[1][filterIndex].value);
             chartParameters.datasetIndex = val;
 
-            setRangeLimits(sidebarInput, [1,2,3], dataset[chartParameters.datasetIndex]);
+            setRangeLimits(sidebarInput, [1,minIndex,maxIndex], dataset[chartParameters.datasetIndex]);
             setAllLabelNames(val);
 
             sidebarLabel[1][2].innerHTML = labelNames[1][2] + ": " + setLabelData(sidebarInput[1][filterIndex].value, sidebarInput[1][2].value);
