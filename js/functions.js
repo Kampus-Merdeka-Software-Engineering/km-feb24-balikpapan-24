@@ -221,12 +221,12 @@ function convertRangeToLabels(labels, min, max) {
 
 // Fungsi konstruktor untuk membuat objek Charx yang mewakili sebuah grafik
 function Charx(type, name, labels, data, unit, displayType){
-this.type = type; // Jenis grafik
-this.name = name; // Nama grafik
-this.labels = labels; // Label untuk data grafik
-this.data = data; // Nilai data untuk grafik
-this.unit = unit; // Unit untuk data grafik
-this.displayType = displayType; //tipe penampilan chart
+  this.type = type; // Jenis grafik
+  this.name = name; // Nama grafik
+  this.labels = labels; // Label untuk data grafik
+  this.data = data; // Nilai data untuk grafik
+  this.unit = unit; // Unit untuk data grafik
+  this.displayType = displayType; //tipe penampilan chart
 };
 
 // Fungsi untuk menghapus semua bagian grafik dari sebuah elemen kontainer
