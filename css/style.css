@@ -217,14 +217,30 @@ body main {
 }
 
 body main section {
+    display: flex;
+    justify-content: center;
+    position: relative;
     border: 1px solid var(--merah);
     background-color: white;
-    padding: 20px;
+    padding-top: 12px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 0px;
     border-radius: 4px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin: 0;
+    margin-bottom: 15px;
     align-self: start;
 }
+
+body main section h3{
+    position: absolute;
+    top: -14px;
+    background-color: white;
+    border: solid 1px var(--merah);
+    padding: 3px 8px;
+    border-radius: 4px;
+}
+
 
 /* Footer Styling */
 body footer {

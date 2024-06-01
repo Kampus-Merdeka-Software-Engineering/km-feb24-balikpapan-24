@@ -152,7 +152,9 @@ for(let i = 0; i < charx.data.length; i++){
   let individualChartDataset = {
     label: charx.labels[i] + ' dalam ' + charx.unit[i], // Label untuk dataset
     data: [charx.data[i]], // Nilai data untuk dataset
-    borderWidth: 0 // Menetapkan lebar border menjadi 0
+    borderWidth: 0, // Menetapkan lebar border menjadi 0
+    backgroundColor: chartParameters.chartColor,
+    borderColor: chartParameters.chartColor
   };
   chartDataset.push(individualChartDataset); // Menambahkan objek dataset individu ke dalam array chartDataset
 };
@@ -166,7 +168,12 @@ return chartDataset; // Mengembalikan dataset grafik yang dimodifikasi
 function makeChart(e, charx) {
   let container = document.createElement('section'); // Membuat elemen section baru
   let canvas = document.createElement('canvas'); // Membuat elemen canvas baru
+  let h3 = document.createElement('h3');
+  h3.innerHTML = "Data " + pageParameters.defaultFilterNames[charx.datasetIndex];
+
+  container.appendChild(h3);
   container.appendChild(canvas); // Meletakkan canvas ke dalam section
+
   e.appendChild(container); // Meletakkan section ke dalam elemen yang ditentukan
 
   if(charx.displayType == 1){
@@ -305,16 +312,6 @@ function convertRangeToLabels(labels, min, max) {
   return result; // Mengembalikan array
 }
 
-// Fungsi konstruktor untuk membuat objek Charx yang mewakili sebuah grafik
-function Charx(type, name, labels, data, unit, displayType){
-  this.type = type; // Jenis grafik
-  this.name = name; // Nama grafik
-  this.labels = labels; // Label untuk data grafik
-  this.data = data; // Nilai data untuk grafik
-  this.unit = unit; // Unit untuk data grafik
-  this.displayType = displayType; //tipe penampilan chart
-};
-
 // Fungsi untuk menghapus semua bagian grafik dari sebuah elemen kontainer
 function removeAllChartSection(container){
   let sections = container.querySelectorAll('section'); // Memilih semua section dalam kontainer
@@ -326,9 +323,9 @@ function removeAllChartSection(container){
 };
 
 //mengubah range
-function setRangeLimits(sidebar, index, data) {
+function setRangeLimits(sidebar, index) {
 
-  let len = data.labels.length;
+  let len = dataset[chartParameters.datasetIndex].labels.length;
 
   chartParameters.minValue = 1;
   chartParameters.maxValue = len;
@@ -342,6 +339,10 @@ function setRangeLimits(sidebar, index, data) {
   sidebar[index[0]][index[2]].value = len;
 };
 
+function setMaxLimit(){
+  chartParameters.maxValue = dataset[chartParameters.datasetIndex].labels.length;
+}
+
 function setLabelData(datasetIndex, val){
   return dataset[datasetIndex].labels[val-1];
 
@@ -350,3 +351,58 @@ function setLabelData(datasetIndex, val){
 function isPortrait() {
     return window.innerHeight > window.innerWidth;
 }
+
+function loadStartup(){
+
+    if(datasetLoaded){
+        sortAllData(0);
+        chartParameters.chartType = 'line';
+        chartParameters.nameSelections = ['revenue'];
+
+        //chart 1
+        chartParameters.datasetIndex = 7;
+        setMaxLimit();
+        loadIndividualChart(dataset[chartParameters.datasetIndex ], chartParameters.chartType);
+            
+        //chart 2
+        chartParameters.datasetIndex = 6;
+        setMaxLimit();
+        loadIndividualChart(dataset[chartParameters.datasetIndex ], chartParameters.chartType);
+
+        //chart 2
+        chartParameters.datasetIndex = 5;
+        setMaxLimit();
+        loadIndividualChart(dataset[chartParameters.datasetIndex ], chartParameters.chartType);
+
+        //chart 2
+        chartParameters.datasetIndex = 4;
+        setMaxLimit();
+        loadIndividualChart(dataset[chartParameters.datasetIndex ], chartParameters.chartType);
+
+        //chart 2
+        chartParameters.datasetIndex = 3;
+        setMaxLimit();
+        loadIndividualChart(dataset[chartParameters.datasetIndex ], chartParameters.chartType);
+
+        //chart 2
+        chartParameters.datasetIndex = 2;
+        setMaxLimit();
+        loadIndividualChart(dataset[chartParameters.datasetIndex ], chartParameters.chartType);
+
+        //chart 2
+        chartParameters.datasetIndex = 1;
+        setMaxLimit();
+        loadIndividualChart(dataset[chartParameters.datasetIndex ], chartParameters.chartType);
+
+        //chart 2
+        chartParameters.datasetIndex = 0;
+        setMaxLimit();
+        loadIndividualChart(dataset[chartParameters.datasetIndex ], chartParameters.chartType);
+
+    
+
+
+    }else{
+        alert("Dataset Not Loaded");
+    };
+};

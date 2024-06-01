@@ -67,3 +67,24 @@ function setAllLabelNames(val){
             };
 
 };
+
+function loadDefaultSettings(){
+        chartParameters = {
+            datasetIndex: 3,
+            minValue: 1, 
+            maxValue: 12,
+            chartDisplayType: 0,
+            nameSelections: [],
+            chartType: 'bar',
+            chartColor: "#dc6b29",
+            chartWidth: 30
+        };
+        pageParameters = {
+            pageWidth: 100, 
+            sidebarWidth: 100,
+            defaultDays: ["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"],
+            defaultMonths: ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"],
+            defaultFilterNames: ['Jam', 'Hari', 'Hari Bulan', 'Bulan', 'Quarter', 'Size', 'Category', 'Type']
+        };
+};
+

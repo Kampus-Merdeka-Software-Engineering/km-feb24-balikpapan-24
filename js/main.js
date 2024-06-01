@@ -66,11 +66,12 @@ function loadIndividualChart(dataset, type){
                     data1.push(individualChartDataset);
                 };
             };
+            let datasetIndex = chartParameters.datasetIndex;
             let name = ' ';
             let labels = translateIndex(labels1);
             let data = data1;
             let unit = ' '
-            let charlets = new Charx(type, name, labels, data, unit, chartParameters.chartDisplayType)
+            let charlets = new Charx(datasetIndex, type, name, labels, data, unit, chartParameters.chartDisplayType)
 
             //memasukkan data 1 chart ke array charts
             mainCharts.unshift(charlets);
@@ -98,11 +99,12 @@ function loadIndividualChart(dataset, type){
                     };
 
                     // Menentukan jenis grafik, nama, label, data, dan unit untuk grafik individual
+                    let datasetIndex = chartParameters.datasetIndex;
                     let name = translatedLabels[i];
                     let labels = individualLabel;
                     let data = individualData;
                     let unit = individualUnit;
-                    let charlets = new Charx(type, name, labels, data, unit, chartParameters.chartDisplayType)
+                    let charlets = new Charx(datasetIndex, type, name, labels, data, unit, chartParameters.chartDisplayType)
                    
                     temp1.unshift(charlets);
                 };

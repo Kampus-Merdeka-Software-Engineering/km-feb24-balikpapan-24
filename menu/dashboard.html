@@ -19,7 +19,7 @@
             <ul>
                 <li>Settings</li>
                 <li>Graphs</li>
-                <li>saya jeje</li>
+                <li>Default</li>
             </ul> 
         </nav>
         
@@ -129,6 +129,17 @@
         <p>Website by <a href="https://example.com" target="_blank">Team 24 Balikpapan Ilmu Padi Kawan</a></p>
     </footer>
 
+
+    <!-- Internal Javascript -->
+    <script>      
+        // Menambahkan elemen main
+        const mainFrame = document.querySelector('body main');
+        // Mendapatkan elemen dom navbar dan sidebar
+        const navLists = document.querySelector('body header nav ul').querySelectorAll('li');
+        const sideBars = document.querySelector('body header').querySelectorAll('section');
+    </script>
+
+
     <!-- External Javascript -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js" ></script>
     <script src="../js/global.js"></script>
@@ -136,14 +147,9 @@
     <script src="../js/functions.js" ></script>
     <script src="../js/load.js" ></script>
 
+
     <!-- Internal Javascript -->
     <script>
-        // Menambahkan elemen main
-        let mainFrame = document.querySelector('body main');
-
-        // Mendapatkan elemen dom navbar dan sidebar
-        const navLists = document.querySelector('body header nav ul').querySelectorAll('li');
-        const sideBars = document.querySelector('body header').querySelectorAll('section');
 
         // Operasi sidebar
         for (let i = 0; i < sideBars.length; i++) {
@@ -152,14 +158,19 @@
             });
             sidebarInput[i] = sideBars[i].querySelectorAll('input, select, button');
             sidebarLabel[i] = sideBars[i].querySelectorAll('label');
-        }
+        };
+
+        navLists[2].addEventListener('click', function() {
+            loadDefaultProcedure(mainFrame);
+        });
 
         // Operasi warna navbar
-        for (let i = 0; i < navLists.length; i++) {
+        for (let i = 0; i < sideBars.length; i++) {
             navLists[i].addEventListener('click', function() {
                 toggleColor2(navLists[i]);
             });
-        }
+        };
+
         //index sidebar kiri
         const indexPageWidth = 0;
         const sidebarHeight = 1;
@@ -208,7 +219,7 @@
             let val = parseInt(sidebarInput[1][filterIndex].value);
             chartParameters.datasetIndex = val;
 
-            setRangeLimits(sidebarInput, [1,minIndex,maxIndex], dataset[chartParameters.datasetIndex]);
+            setRangeLimits(sidebarInput, [1,minIndex,maxIndex]);
             setAllLabelNames(val);
 
             sidebarLabel[1][minIndex].innerHTML = labelNames[1][minIndex] + ": " + setLabelData(sidebarInput[1][filterIndex].value, sidebarInput[1][minIndex].value);
@@ -221,7 +232,6 @@
         sidebarInput[1][sortIndex].oninput = function() {
             let val = sidebarInput[1][sortIndex].value;
             sortAllData(val);
-            
         };
 
         sidebarInput[1][minIndex].oninput = function() {
@@ -242,7 +252,7 @@
             chartParameters.chartType = sidebarInput[1][chartType2Index].value;
         };
         sidebarInput[1][addChartIndex].onclick = function() {
-    
+            
             if(chartParameters.nameSelections.length != 0){
 
                 loadIndividualChart(dataset[chartParameters.datasetIndex], chartParameters.chartType);
@@ -289,6 +299,7 @@
         headerH1.onclick = function(){
             toggleDisplayFlex(headerUlLi);
         };
+
     </script>
 
     <!-- External Javascript -->
