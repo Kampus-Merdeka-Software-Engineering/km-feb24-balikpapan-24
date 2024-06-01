@@ -29,7 +29,7 @@ function sortAllData(index){
 
         // Nama label 
         let labelNames = [
-            ['Lebar Halaman', 'Tinggi Sidebar'],
+            ['Lebar Halaman', 'Tinggi Sidebar', 'Lebar Chart'],
             ['Pilih Jenis Filter', 'Pilih Jenis Sort','Bulan Minimal', 'Bulan Maksimal']
         ];
 

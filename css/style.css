@@ -205,7 +205,7 @@ body header section div label,span {
 /* Main Content Styling */
 body main {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(26rem, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(30%, 1fr));
     grid-column-gap: 0.5rem;
     grid-row-gap: 0.5rem;
     padding: 20px;
@@ -222,6 +222,7 @@ body main section {
     border-radius: 4px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     margin: 0;
+    align-self: start;
 }
 
 /* Footer Styling */

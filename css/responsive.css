@@ -3,9 +3,7 @@
         width: 15vw;
         overflow-y: auto;
     }
-    body main section {
-        max-width: 30vw;
-    }
+
 }
 
 @media screen and (orientation:portrait) {
@@ -25,7 +23,7 @@
     }
 
     body main section{
-        height: 40vh;
+        height: auto;
     }
 
     body header {

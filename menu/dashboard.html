@@ -32,6 +32,10 @@
                 <label>Tinggi Sidebar: 100vh</label>
                 <input type="range" min="40" max="100" value="100">
             </div>
+            <div>
+                <label>Lebar Chart: 30%</label>
+                <input type="range" min="10" max="51" value="30">
+            </div>
         </section>
         
         <section>
@@ -71,6 +75,19 @@
                 <select>
                     <option value="0">Single Chart</option>
                     <option value="1">Multi Chart</option>
+                </select>
+            </div>
+            <div>
+                <label>Pilih Tipe Chart</label>
+                <select>
+                    <option value="bar" selected>Bar Chart</option>
+                    <option value="line">Line Chart</option>
+                    <option value="pie">Pie Chart</option>
+                    <option value="doughnut">Doughnut Chart</option>
+                    <option value="radar">Radar Chart</option>
+                    <option value="area">Area Chart</option>
+                    <option value="polarArea">Polar Area Chart</option>
+                    <option value="scatter">Scatter Chart</option>
                 </select>
             </div>
             <div id="name_selection">
@@ -130,29 +147,42 @@
                 toggleColor2(navLists[i]);
             });
         }
+        //index sidebar kiri
+        const indexPageWidth = 0;
+        const sidebarHeight = 1;
+        const charWidth = 2;
 
-        //index sidebar
+
+
+        //index sidebar lanan
         const filterIndex = 0;
         const sortIndex = 1;
         const minIndex = 2;
         const maxIndex = 3;
         const chartTypeIndex = 4;
-        const addChartIndex = 5;
-        const refreshChartIndex = 6;
-        const removeChartIndex = 7;
+        const chartType2Index = 5;
+        const addChartIndex = 6;
+        const refreshChartIndex = 7;
+        const removeChartIndex = 8;
 
         // Menambahkan label responsif dan fungsi pada setiap input sidebar
         // Sidebar kiri
-        sidebarInput[0][0].oninput = function() {
-            pageParameters.pageWidth = parseInt(sidebarInput[0][0].value);
+        sidebarInput[0][indexPageWidth].oninput = function() {
+            pageParameters.pageWidth = parseInt(sidebarInput[0][indexPageWidth].value);
             mainFrame.style.width = pageParameters.pageWidth + "%";
-            sidebarLabel[0][0].innerHTML = labelNames[0][0] + ": " + pageParameters.pageWidth + "%";
+            sidebarLabel[0][indexPageWidth].innerHTML = labelNames[0][indexPageWidth] + ": " + pageParameters.pageWidth + "%";
         };
-        sidebarInput[0][1].oninput = function() {
-            pageParameters.sidebarWidth = parseInt(sidebarInput[0][1].value);
+        sidebarInput[0][sidebarHeight].oninput = function() {
+            pageParameters.sidebarWidth = parseInt(sidebarInput[0][sidebarHeight].value);
             sideBars[0].style.height = pageParameters.sidebarWidth + "vh";
-            sideBars[1].style.height = pageParameters.sidebarWidth + "vh";
-            sidebarLabel[0][1].innerHTML = labelNames[0][1] + ": " + pageParameters.sidebarWidth + "vh";
+            sideBars[sidebarHeight].style.height = pageParameters.sidebarWidth + "vh";
+            sidebarLabel[0][sidebarHeight].innerHTML = labelNames[0][sidebarHeight] + ": " + pageParameters.sidebarWidth + "vh";
+        };
+        sidebarInput[0][charWidth].oninput = function() {
+            pageParameters.charWidth = parseInt(sidebarInput[0][charWidth].value);
+            let main2 = document.querySelector('body main');
+            main2.style.gridTemplateColumns = "repeat(auto-fit, minmax(" + pageParameters.charWidth + "%, 1fr))";
+            sidebarLabel[0][charWidth].innerHTML = labelNames[0][charWidth] + ": " + pageParameters.charWidth + "%";
         };
 
         // Sidebar kanan
@@ -191,11 +221,14 @@
         sidebarInput[1][chartTypeIndex].oninput = function() {
             chartParameters.chartDisplayType = parseInt(sidebarInput[1][chartTypeIndex].value);
         };
+        sidebarInput[1][chartType2Index].oninput = function() {
+            chartParameters.chartType = sidebarInput[1][chartType2Index].value;
+        };
         sidebarInput[1][addChartIndex].onclick = function() {
     
             if(chartParameters.nameSelections.length != 0){
 
-                loadIndividualChart(dataset[chartParameters.datasetIndex], 'bar');
+                loadIndividualChart(dataset[chartParameters.datasetIndex], chartParameters.chartType);
                 renderCharts(mainFrame);
 
             };
