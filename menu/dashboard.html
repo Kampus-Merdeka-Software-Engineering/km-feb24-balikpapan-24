@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="../css/responsive.css">
 </head>
 <body>
+    <!-- Header -->
     <header>
         <h1>Pizza Sales Report Team 24</h1>
         <nav>
@@ -22,6 +23,7 @@
             </ul> 
         </nav>
         
+        <!-- Left Sidebar -->
         <section>
             <h2>Pengaturan</h2>
             <div>
@@ -42,6 +44,7 @@
             </div>
         </section>
         
+        <!-- Right Sidebar -->
         <section>
             <h2>Halaman Tabel</h2>
             <div>
@@ -108,8 +111,13 @@
         </section>
     </header>
 
+    <!-- Chart Cintainer -->
     <main></main>
+
+    <!-- Misc -->
     <aside></aside>
+
+    <!-- Footer -->
     <footer>
         <p>&copy; 2024 Kelompok 24 Balikpapan.</p>
         <div class="social-icons">
@@ -121,11 +129,14 @@
         <p>Website by <a href="https://example.com" target="_blank">Team 24 Balikpapan Ilmu Padi Kawan</a></p>
     </footer>
 
+    <!-- External Javascript -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js" ></script>
     <script src="../js/global.js"></script>
     <script src="../js/manual.js"></script>
     <script src="../js/functions.js" ></script>
     <script src="../js/load.js" ></script>
+
+    <!-- Internal Javascript -->
     <script>
         // Menambahkan elemen main
         let mainFrame = document.querySelector('body main');
@@ -249,13 +260,9 @@
         };
 
 
-
-
-
         //seleksi nama metric
         const name_container = document.getElementById("name_selection");
         let inputSelections = name_container.querySelectorAll("p");
-        
 
         function handleClick(event) {
         
@@ -283,6 +290,8 @@
             toggleDisplayFlex(headerUlLi);
         };
     </script>
+
+    <!-- External Javascript -->
     <script src="../js/main.js"></script>
 </body>
 </html>
