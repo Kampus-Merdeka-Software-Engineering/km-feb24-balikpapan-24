@@ -188,7 +188,7 @@
         };
         sidebarInput[0][chartColor].oninput = function() {
             chartParameters.chartColor = sidebarInput[0][chartColor].value.toString();
-            
+            sidebarLabel[0][chartColor].innerHTML = labelNames[0][chartColor] + ": " + chartParameters.chartColor;
         };
 
         // Sidebar kanan
