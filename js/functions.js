@@ -170,7 +170,7 @@ function makeChart(e, charx) {
   e.appendChild(container); // Meletakkan section ke dalam elemen yang ditentukan
 
   if(charx.displayType == 1){
-    new Chart(canvas, { // Membuat instance Chart baru dengan elemen canvas
+  new Chart(canvas, { // Membuat instance Chart baru dengan elemen canvas
     type: charx.type, // Menetapkan jenis grafik
     data: {
       labels: [charx.name], // Menetapkan label untuk grafik
@@ -181,21 +181,107 @@ function makeChart(e, charx) {
         y: {
           beginAtZero: true // Menetapkan sumbu y untuk dimulai dari nol
         }
+      },
+      plugins: {
+        legend: {
+          labels: {
+            font: {
+              size: 16 // Mengatur ukuran font pada legend
+            }
+          }
+        }
+      },
+      layout: {
+        padding: {
+          top: 20,
+          bottom: 20
+        }
+      },
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          labels: {
+            font: {
+              size: 16 // Mengatur ukuran font pada legend
+            }
+          }
+        }
+      },
+      scales: {
+        x: {
+          ticks: {
+            font: {
+              size: 14 // Mengatur ukuran font pada sumbu x
+            }
+          }
+        },
+        y: {
+          ticks: {
+            font: {
+              size: 14 // Mengatur ukuran font pada sumbu y
+            }
+          }
+        }
       }
     }
-  }); 
+  });
 
   }else{
+
+
   new Chart(canvas, {
     type: charx.type,
     data: {
       labels: charx.labels,
-      datasets: charx.data
+      datasets: charx.data,
     },
-    options: {
+options: {
       scales: {
         y: {
-          beginAtZero: true
+          beginAtZero: true // Menetapkan sumbu y untuk dimulai dari nol
+        }
+      },
+      plugins: {
+        legend: {
+          labels: {
+            font: {
+              size: 16 // Mengatur ukuran font pada legend
+            }
+          }
+        }
+      },
+      layout: {
+        padding: {
+          top: 20,
+          bottom: 20
+        }
+      },
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          labels: {
+            font: {
+              size: 16 // Mengatur ukuran font pada legend
+            }
+          }
+        }
+      },
+      scales: {
+        x: {
+          ticks: {
+            font: {
+              size: 14 // Mengatur ukuran font pada sumbu x
+            }
+          }
+        },
+        y: {
+          ticks: {
+            font: {
+              size: 14 // Mengatur ukuran font pada sumbu y
+            }
+          }
         }
       }
     }

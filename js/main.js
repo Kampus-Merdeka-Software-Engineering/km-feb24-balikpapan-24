@@ -19,8 +19,16 @@ function loadIndividualChart(dataset, type){
 
         if(chartParameters.chartDisplayType == 0){
 
+
+
             let data1 = [] //menampung data untuk dataset 1 chart
             let labels1 = []; //menampung label untuk 1 chart
+            let borderWidthx = 0;
+
+            if(chartParameters.chartType == 'line'){
+                borderWidthx = 2;
+            };
+
 
             //memasukkan label sesuai filter
             for(let j = chartParameters.minValue-1; j<chartParameters.maxValue; j++){
@@ -34,12 +42,27 @@ function loadIndividualChart(dataset, type){
                     for(let j = chartParameters.minValue-1; j<chartParameters.maxValue; j++){
                         datas.push(dataset.datasets[i].data[j]);
                     };
+                    let individualChartDataset;
 
-                    let individualChartDataset = {
-                        label: dataset.datasets[i].name + ' dalam ' + dataset.datasets[i].unit , // Label untuk dataset
-                        data: datas, // Nilai data untuk dataset
-                        borderWidth: 0 // Menetapkan lebar border menjadi 0
-                    };
+                    
+                    if(chartParameters.chartType == 'line' || chartParameters.chartType == 'bar' || chartParameters.chartType == 'radar'){
+                        individualChartDataset = {
+                            label: dataset.datasets[i].name + ' dalam ' + dataset.datasets[i].unit , // Label untuk dataset
+                            data: datas, // Nilai data untuk dataset
+                            borderWidth: borderWidthx, // Menetapkan lebar border
+                            backgroundColor:"#dc6b29",
+                            borderColor: "#dc6b29"
+                        };
+                    }else{
+                        individualChartDataset = {
+                            label: dataset.datasets[i].name + ' dalam ' + dataset.datasets[i].unit , // Label untuk dataset
+                            data: datas, // Nilai data untuk dataset
+                            borderWidth: borderWidthx // Menetapkan lebar border
+
+                        };
+                    }
+
+
                     data1.push(individualChartDataset);
                 };
             };
