@@ -54,7 +54,7 @@ function loadIndividualChart(dataset, type){
 
         }else{
             let translatedLabels = translateIndex(dataset.labels);
-
+            let temp1 = [];
             // Iterasi melalui setiap label dalam dataset
             for(let i = 0; i < dataset.labels.length; i++){
                 // Memeriksa apakah label saat ini termasuk dalam rentang yang diinginkan
@@ -81,8 +81,11 @@ function loadIndividualChart(dataset, type){
                     let unit = individualUnit;
                     let charlets = new Charx(type, name, labels, data, unit, chartParameters.chartDisplayType)
                    
-                    mainCharts.unshift(charlets);
+                    temp1.unshift(charlets);
                 };
+            };
+            for(let i = 0; i<temp1.length; i++){
+                mainCharts.unshift(temp1[i]);
             };
         };
 
