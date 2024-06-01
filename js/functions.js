@@ -356,30 +356,34 @@ function loadStartup(){
 
     if(datasetLoaded){
         sortAllData(0);
-        chartParameters.chartType = 'line';
         chartParameters.nameSelections = ['revenue'];
 
         //chart 1
+        chartParameters.chartType = 'radar';
         chartParameters.datasetIndex = 7;
         setMaxLimit();
         loadIndividualChart(dataset[chartParameters.datasetIndex ], chartParameters.chartType);
             
         //chart 2
+        chartParameters.chartType = 'pie';
         chartParameters.datasetIndex = 6;
         setMaxLimit();
         loadIndividualChart(dataset[chartParameters.datasetIndex ], chartParameters.chartType);
 
         //chart 2
+        chartParameters.chartType = 'bar';
         chartParameters.datasetIndex = 5;
         setMaxLimit();
         loadIndividualChart(dataset[chartParameters.datasetIndex ], chartParameters.chartType);
 
         //chart 2
+        chartParameters.chartType = 'bar';
         chartParameters.datasetIndex = 4;
         setMaxLimit();
         loadIndividualChart(dataset[chartParameters.datasetIndex ], chartParameters.chartType);
 
         //chart 2
+        chartParameters.chartType = 'line';
         chartParameters.datasetIndex = 3;
         setMaxLimit();
         loadIndividualChart(dataset[chartParameters.datasetIndex ], chartParameters.chartType);
