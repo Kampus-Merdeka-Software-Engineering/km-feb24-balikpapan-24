@@ -45,7 +45,7 @@ function loadIndividualChart(dataset, type){
                     let individualChartDataset;
 
                     
-                    if(chartParameters.chartType == 'line' || chartParameters.chartType == 'bar' || chartParameters.chartType == 'radar'){
+                    if((chartParameters.chartType == 'line' || chartParameters.chartType == 'bar' || chartParameters.chartType == 'radar') && dummyName.length == 1){
                         individualChartDataset = {
                             label: dataset.datasets[i].name + ' dalam ' + dataset.datasets[i].unit , // Label untuk dataset
                             data: datas, // Nilai data untuk dataset
