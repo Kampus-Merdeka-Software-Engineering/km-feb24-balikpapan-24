@@ -102,6 +102,11 @@ function translateIndex(label){
       final[i] = pageParameters.defaultDays[label[i]-1];
     };
     return final;
+  }else if(chartParameters.datasetIndex == 4){
+    for(let i = 0; i < l; i++){
+      final[i] = 'Q'+label[i];
+    };
+    return final;
   };
 
   return label;
