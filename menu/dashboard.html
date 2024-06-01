@@ -181,7 +181,7 @@
             sidebarLabel[0][sidebarHeight].innerHTML = labelNames[0][sidebarHeight] + ": " + pageParameters.sidebarWidth + "vh";
         };
         sidebarInput[0][charWidth].oninput = function() {
-            pageParameters.charWidth = parseInt(sidebarInput[0][charWidth].value);
+            chartParameters.chartWidth = parseInt(sidebarInput[0][charWidth].value);
             let main2 = document.querySelector('body main');
             main2.style.gridTemplateColumns = "repeat(auto-fit, minmax(" + chartParameters.chartWidth + "%, 1fr))";
             sidebarLabel[0][charWidth].innerHTML = labelNames[0][charWidth] + ": " + chartParameters.chartWidth + "%";
