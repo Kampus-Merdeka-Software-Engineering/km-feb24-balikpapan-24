@@ -3,7 +3,13 @@
         width: 15vw;
         overflow-y: auto;
     }
-
+    body main section {
+        transition: ease-in-out 0.2s;
+    }
+    body main section:hover {
+        transform: scale(1.02);
+        background-color: #fff9e8;
+    }
 }
 
 @media screen and (orientation:portrait) {

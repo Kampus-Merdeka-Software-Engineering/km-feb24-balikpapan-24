@@ -50,8 +50,8 @@ function loadIndividualChart(dataset, type){
                             label: dataset.datasets[i].name + ' dalam ' + dataset.datasets[i].unit , // Label untuk dataset
                             data: datas, // Nilai data untuk dataset
                             borderWidth: borderWidthx, // Menetapkan lebar border
-                            backgroundColor:"#dc6b29",
-                            borderColor: "#dc6b29"
+                            backgroundColor: chartParameters.chartColor,
+                            borderColor: chartParameters.chartColor
                         };
                     }else{
                         individualChartDataset = {

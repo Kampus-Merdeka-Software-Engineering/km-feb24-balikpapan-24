@@ -92,12 +92,12 @@ function translateIndex(label){
   let l = label.length;
   let final = [];
 
-  if(l == 12){
+  if(chartParameters.datasetIndex == 3){
     for(let i = 0; i < l; i++){
       final[i] = pageParameters.defaultMonths[label[i]-1];
     };
     return final;
-  }else if(l == 7){
+  }else if(chartParameters.datasetIndex == 1){
     for(let i = 0; i < l; i++){
       final[i] = pageParameters.defaultDays[label[i]-1];
     };

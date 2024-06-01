@@ -13,7 +13,6 @@ let allData = [];
         let pageParameters = {
             pageWidth: 100, 
             sidebarWidth: 100,
-            charWidth: 30,
             defaultDays: ["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"],
             defaultMonths: ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"]
 
@@ -25,5 +24,7 @@ let allData = [];
             maxValue: 12,
             chartDisplayType: 0,
             nameSelections: [],
-            chartType: 'bar'
+            chartType: 'bar',
+            chartColor: "#dc6b29",
+            charWidth: 30
         }
