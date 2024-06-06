@@ -4,8 +4,154 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pizza Sales Report Team 24</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap">
     <link rel="stylesheet" href="./css/styles.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background: #dc6b29;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+        header .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header .header-content .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+        .member {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        .card {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            overflow: hidden;
+            width: 200px;
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+        }
+        .card .header {
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #dc6b29;
+        }
+        .card .header img {
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+        }
+        .card .body {
+            padding: 20px;
+            text-align: center;
+        }
+        .card .body h3 {
+            margin: 10px 0;
+            font-size: 1.2em;
+        }
+        .card .body p {
+            color: #666;
+        }
+        .card .social-icons a {
+            margin: 0 5px;
+            color: #dc6b29;
+            text-decoration: none;
+        }
+        .main-content {
+            display: flex;
+            margin-top: 20px;
+        }
+        .sidebar {
+            width: 30%;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 10px;
+        }
+        .sidebar h3 {
+            margin-bottom: 10px;
+            color: #dc6b29;
+        }
+        .sidebar p {
+            margin: 10px 0;
+        }
+        .dashboard {
+            width: 70%;
+            padding: 20px;
+        }
+        .metrics {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .metric {
+            background: #f9f9f9;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            width: 23%;
+        }
+        .charts canvas {
+            margin-top: 20px;
+            width: 100%;
+            height: 300px;
+        }
+        footer {
+            background: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        footer .social-icons a {
+            margin: 0 10px;
+            color: #fff;
+            text-decoration: none;
+        }
+        footer p {
+            margin: 10px 0;
+        }
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+            }
+            .sidebar, .dashboard {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+            .metrics {
+                flex-direction: column;
+            }
+            .metric {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -242,10 +388,10 @@
     <footer>
         <p>&copy; 2024 Kelompok 24 Balikpapan.</p>
         <div class="social-icons">
-            <a href="https://www.facebook.com" class="facebook" target="_blank"></a>
-            <a href="https://www.twitter.com" class="twitter" target="_blank"></a>
-            <a href="https://www.instagram.com" class="instagram" target="_blank"></a>
-            <a href="https://www.linkedin.com" class="linkedin" target="_blank"></a>
+            <a href="https://www.facebook.com" class="facebook" target="_blank">F</a>
+            <a href="https://www.twitter.com" class="twitter" target="_blank">T</a>
+            <a href="https://www.instagram.com" class="instagram" target="_blank">I</a>
+            <a href="https://www.linkedin.com" class="linkedin" target="_blank">L</a>
         </div>
         <p>Website by <a href="https://example.com" target="_blank">Team 24 Balikpapan Ilmu Padi Kawan</a></p>
     </footer>
