@@ -5,6 +5,18 @@ document.addEventListener('DOMContentLoaded', function() {
     const salesBySizeCtx = document.getElementById('salesBySizeChart').getContext('2d');
     const totalPizzasSoldByCategoryCtx = document.getElementById('totalPizzasSoldByCategoryChart').getContext('2d');
 
+    // Gradient colors for the bar charts
+    function createGradient(ctx, color1, color2) {
+        const gradient = ctx.createLinearGradient(0, 0, 0, 400);
+        gradient.addColorStop(0, color1);
+        gradient.addColorStop(1, color2);
+        return gradient;
+    }
+
+    const dailyGradient = createGradient(dailyTrendCtx, '#B80000', '#FF6347');
+    const monthlyGradient = createGradient(monthlyTrendCtx, '#820300', '#FF4500');
+    const categoryGradient = createGradient(totalPizzasSoldByCategoryCtx, '#5F8670', '#77DD77');
+
     new Chart(dailyTrendCtx, {
         type: 'bar',
         data: {
@@ -12,15 +24,58 @@ document.addEventListener('DOMContentLoaded', function() {
             datasets: [{
                 label: 'Daily Trend for Total Orders',
                 data: [6485, 6895, 6946, 7478, 8242, 7493, 6035],
-                backgroundColor: '#B80000',
-                borderColor: 'B80000',
-                borderWidth: 1
+                backgroundColor: dailyGradient,
+                borderColor: '#B80000',
+                borderWidth: 1,
+                borderRadius: 5,
+                barPercentage: 0.5,
+                categoryPercentage: 0.5
             }]
         },
         options: {
+            plugins: {
+                tooltip: {
+                    backgroundColor: '#FF6347',
+                    titleColor: '#fff',
+                    bodyColor: '#fff',
+                    borderColor: '#B80000',
+                    borderWidth: 1
+                },
+                legend: {
+                    labels: {
+                        color: '#333',
+                        font: {
+                            family: 'Arial',
+                            size: 28
+                        }
+                    }
+                }
+            },
             scales: {
                 y: {
-                    beginAtZero: true
+                    beginAtZero: true,
+                    grid: {
+                        display: false
+                    },
+                    ticks: {
+                        color: '#333',
+                        font: {
+                            family: 'Arial',
+                            size: 24
+                        }
+                    }
+                },
+                x: {
+                    grid: {
+                        display: false
+                    },
+                    ticks: {
+                        color: '#333',
+                        font: {
+                            family: 'Arial',
+                            size: 24
+                        }
+                    }
                 }
             }
         }
@@ -32,16 +87,60 @@ document.addEventListener('DOMContentLoaded', function() {
             labels: ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"],
             datasets: [{
                 label: 'Monthly Trend for Total Orders',
-                data: [4232,3961,4261,4151,4328,4107,4392,4168,3890,3883,4266,3935],
-                backgroundColor: '#820300',
+                data: [4232, 3961, 4261, 4151, 4328, 4107, 4392, 4168, 3890, 3883, 4266, 3935],
+                backgroundColor: monthlyGradient,
                 borderColor: '#820300',
-                borderWidth: 1
+                borderWidth: 2,
+                pointBackgroundColor: '#FF4500',
+                pointBorderColor: '#fff',
+                pointBorderWidth: 2,
+                tension: 0.4
             }]
         },
         options: {
+            plugins: {
+                tooltip: {
+                    backgroundColor: '#FF4500',
+                    titleColor: '#fff',
+                    bodyColor: '#fff',
+                    borderColor: '#820300',
+                    borderWidth: 1
+                },
+                legend: {
+                    labels: {
+                        color: '#333',
+                        font: {
+                            family: 'Arial',
+                            size: 28
+                        }
+                    }
+                }
+            },
             scales: {
                 y: {
-                    beginAtZero: true
+                    beginAtZero: true,
+                    grid: {
+                        display: false
+                    },
+                    ticks: {
+                        color: '#333',
+                        font: {
+                            family: 'Arial',
+                            size: 24
+                        }
+                    }
+                },
+                x: {
+                    grid: {
+                        display: false
+                    },
+                    ticks: {
+                        color: '#333',
+                        font: {
+                            family: 'Arial',
+                            size: 24
+                        }
+                    }
                 }
             }
         }
@@ -60,17 +159,31 @@ document.addEventListener('DOMContentLoaded', function() {
                     '#B80000',
                     '#820300'
                 ],
-                borderColor: [
-                    '#5F8670',
-                    '#FF9800',
-                    '#B80000',
-                    '#820300'
-                ],
-                borderWidth: 1
+                borderColor: '#fff',
+                borderWidth: 2
             }]
         },
         options: {
-            responsive: true
+            responsive: true,
+            plugins: {
+                tooltip: {
+                    backgroundColor: '#FF9800',
+                    titleColor: '#fff',
+                    bodyColor: '#fff',
+                    borderColor: '#FF9800',
+                    borderWidth: 1
+                },
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        color: '#333',
+                        font: {
+                            family: 'Arial',
+                            size: 36
+                        }
+                    }
+                }
+            }
         }
     });
 
@@ -88,18 +201,31 @@ document.addEventListener('DOMContentLoaded', function() {
                     '#820300',
                     '#FFA27F'
                 ],
-                borderColor: [
-                    '#5F8670',
-                    '#FF9800',
-                    '#B80000',
-                    '#820300',
-                    '#FFA27F'
-                ],
-                borderWidth: 1
+                borderColor: '#fff',
+                borderWidth: 2
             }]
         },
         options: {
-            responsive: true
+            responsive: true,
+            plugins: {
+                tooltip: {
+                    backgroundColor: '#FF9800',
+                    titleColor: '#fff',
+                    bodyColor: '#fff',
+                    borderColor: '#FF9800',
+                    borderWidth: 1
+                },
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        color: '#333',
+                        font: {
+                            family: 'Arial',
+                            size: 36
+                        }
+                    }
+                }
+            }
         }
     });
 
@@ -110,15 +236,58 @@ document.addEventListener('DOMContentLoaded', function() {
             datasets: [{
                 label: 'Total Pizzas Sold by Pizza Category',
                 data: [14888, 11987, 11649, 11050],
-                backgroundColor: '#5F8670',
+                backgroundColor: categoryGradient,
                 borderColor: '#5F8670',
-                borderWidth: 1
+                borderWidth: 1,
+                borderRadius: 5,
+                barPercentage: 0.5,
+                categoryPercentage: 0.5
             }]
         },
         options: {
+            plugins: {
+                tooltip: {
+                    backgroundColor: '#77DD77',
+                    titleColor: '#fff',
+                    bodyColor: '#fff',
+                    borderColor: '#5F8670',
+                    borderWidth: 1
+                },
+                legend: {
+                    labels: {
+                        color: '#333',
+                        font: {
+                            family: 'Arial',
+                            size: 28
+                        }
+                    }
+                }
+            },
             scales: {
                 y: {
-                    beginAtZero: true
+                    beginAtZero: true,
+                    grid: {
+                        display: false
+                    },
+                    ticks: {
+                        color: '#333',
+                        font: {
+                            family: 'Arial',
+                            size: 24
+                        }
+                    }
+                },
+                x: {
+                    grid: {
+                        display: false
+                    },
+                    ticks: {
+                        color: '#333',
+                        font: {
+                            family: 'Arial',
+                            size: 24
+                        }
+                    }
                 }
             }
         }
