@@ -53,6 +53,8 @@ header .header-content .logo {
 }
 .card .header img {
     border-radius: 50%;
+    object-fit: cover;
+    object-position: center top;
 }
 .card .body {
     padding: 20px;
