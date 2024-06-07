@@ -10,6 +10,11 @@ body {
     margin: 0 auto;
     padding: 20px;
 }
+
+.container header{
+    z-index: 1000;
+}
+
 header .header-content {
     display: flex;
     align-items: center;
