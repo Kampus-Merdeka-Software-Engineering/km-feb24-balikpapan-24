@@ -119,18 +119,26 @@ footer p {
 }
 
 @media (max-width: 768px) {
+
+
+
+    header .header-content .logo {
+        font-size: 14px;
+    }
+
     .main-content {
         flex-direction: column;
+        width: 100%;
     }
     .sidebar, .dashboard {
-        width: 100%;
+        width: 90%;
         margin-bottom: 20px;
     }
     .metrics {
         flex-direction: column;
     }
     .metric {
-        width: 100%;
+        width: 80%;
         margin-bottom: 10px;
     }
     .charts {
