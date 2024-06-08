@@ -293,3 +293,87 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
+let allData = [];
+let converted = [];
+fetch_master("./dataset/all.json").then(
+    function (value) {
+        allData = value;
+        converted = convertDataset(allData);
+        processed = processDataForDatatable(converted, 'pizza_id', 'revenue', 'desc');
+        createDatatableOptions(getUniqueValuesSpecific(converted), tableFilter1);
+        renderDatatable(mainTable, processed);
+    },
+    function (error) {
+        // Display an error message if data loading fails
+        alert("Database Error!");
+    }
+);
+
+
+//datatable
+function renderDatatable(table, data) {
+    // Limit the dataset to 100 rows for demonstration
+    let dataset = data;
+
+    // Clear existing headers and rows
+    let theads = table.querySelectorAll('thead'); 
+    theads.forEach(head => {
+        head.remove(); 
+    });
+    let tbodies = table.querySelectorAll('tbody'); 
+    tbodies.forEach(body => {
+        body.remove(); 
+    });
+
+    let tableHead = document.createElement('thead');
+    let tableBody = document.createElement('tbody');
+
+    tableHead.innerHTML = '';
+    tableBody.innerHTML = '';
+
+    // Dynamically create table headers
+    const headers = Object.keys(dataset[0]);
+    const headerRow = document.createElement('tr');
+    headers.forEach(header => {
+        const th = document.createElement('th');
+        th.innerText = header;
+        headerRow.appendChild(th);
+    });
+    tableHead.appendChild(headerRow);
+
+    // Dynamically create table rows
+    dataset.forEach(row => {
+        const tr = document.createElement('tr');
+        headers.forEach(header => {
+            const td = document.createElement('td');
+            td.innerText = row[header];
+            tr.appendChild(td);
+        });
+        tableBody.appendChild(tr);
+    });
+
+    table.appendChild(tableHead);
+    table.appendChild(tableBody);
+
+
+
+    // Check if DataTable is already initialized
+    if ($.fn.DataTable.isDataTable('#mainTable')) {
+        // Destroy the existing DataTable
+        $('#mainTable').DataTable().destroy();
+    }
+
+    // Initialize the DataTable
+    $('#mainTable').DataTable({
+        fixedHeader: true,
+        scrollX: true
+    });
+
+}
+
+
+function reRenderChart(table, filter, metric, order){
+    let processed = processDataForDatatable(converted, filter, metric, order);
+    renderDatatable(table, processed);
+}

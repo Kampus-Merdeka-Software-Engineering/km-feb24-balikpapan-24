@@ -415,3 +415,108 @@ function loadStartup(){
         alert("Dataset Not Loaded");
     };
 };
+
+function convertDataset(dataset) {
+    const monthNames = ["Januari", "Febuari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+    const dayWeekNames = ["", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"];
+    const quarterNames = ["", "Q1", "Q2", "Q3", "Q4"];
+
+    return dataset.map(({ order_id, order_details_id, ...item }) => {
+        return {
+            ...item,
+            order_month: monthNames[item.order_month - 1],
+            order_quarter: quarterNames[item.order_quarter],
+            order_day_week: dayWeekNames[item.order_day_week],
+            order_hour: item.order_hour.toString(),
+            order_day: item.order_day.toString()
+        };
+    });
+
+
+};
+
+function processDataForDatatable(dataset, filter, metric, order) {
+ // Step 1: Filter the dataset by unique filter values
+    const filteredGroups = dataset.reduce((acc, item) => {
+        const filterValue = item[filter];
+        if (!acc[filterValue]) {
+            acc[filterValue] = [];
+        }
+        acc[filterValue].push(item);
+        return acc;
+    }, {});
+
+  // Step 2: Aggregate data within each group
+  const aggregatedResults = Object.entries(filteredGroups).map(([filterValue, items]) => {
+      // Aggregate integers and find max revenue for strings
+      const aggregated = items.reduce((acc, item) => {
+          for (const [key, value] of Object.entries(item)) {
+              if (typeof value === 'number') {
+                  acc[key] = (acc[key] || 0) + value;
+              } else if (typeof value === 'string') {
+                  if (!acc[key] || item.revenue > acc.revenue) {
+                      acc[key] = value;
+                  }
+              }
+          }
+          return acc;
+      }, {});
+
+      // Set the filter value
+      aggregated[filter] = filterValue;
+
+      // Round numeric values to 3 decimal places
+      for (const key in aggregated) {
+          if (typeof aggregated[key] === 'number') {
+              aggregated[key] = parseFloat(aggregated[key].toFixed(1));
+          }
+      }
+
+      return aggregated;
+  });
+
+    // Step 3: Sort the results based on the metric and order
+    aggregatedResults.sort((a, b) => {
+        if (order === 'asc') {
+            return a[metric] - b[metric];
+        } else {
+            return b[metric] - a[metric];
+        }
+    });
+
+
+
+    return aggregatedResults;
+};
+
+function getUniqueValuesSpecific(dataset) {
+  const uniqueValues = {};
+
+  dataset.forEach(item => {
+    for (const key in item) {
+      if (key !== 'order_details_id' && key !== 'order_id' && isNaN(item[key])) {
+        if (!uniqueValues[key]) {
+          uniqueValues[key] = new Set();
+        }
+        uniqueValues[key].add(item[key]);
+      }
+    }
+  });
+
+  return uniqueValues;
+}
+
+
+function createDatatableOptions(data, element){
+
+  for (const item in data) {
+    const option = document.createElement('option');
+      option.value = item;
+      option.innerHTML = item;
+
+    element.appendChild(option);
+
+  };
+
+
+};

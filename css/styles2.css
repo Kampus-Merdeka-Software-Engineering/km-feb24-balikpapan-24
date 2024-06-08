@@ -110,6 +110,24 @@ header .header-content .logo {
 .charts canvas {
     margin-top: 20px;
 }
+
+.tableFilters {
+    display: flex;
+    justify-content: space-around;
+    gap: 10px; 
+}
+
+
+.tableFilters select {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.tableFilters select option {
+    font-size: 14px;
+}
 footer {
     background: #333;
     color: #fff;
