@@ -253,14 +253,6 @@
                     <select id="tableFilter1">
 
                     </select>
-                    <select id="tableFilter2">
-                        <option>revenue</option>
-                        <option>order_quantity</option>
-                    </select>
-                    <select id="tableFilter3">
-                        <option>desc</option>
-                        <option>asc</option>
-                    </select>
                 </div>
                 <table id="mainTable" class="display" style="width:100%">
 
@@ -286,8 +278,6 @@
     <script>
         const mainTable = document.getElementById("mainTable");
         const tableFilter1 = document.getElementById("tableFilter1");
-        const tableFilter2 = document.getElementById("tableFilter2");
-        const tableFilter3 = document.getElementById("tableFilter3");
 
         let datatableParameters = ['pizza_id', 'revenue', 'desc'];
 
@@ -295,14 +285,7 @@
             datatableParameters[0] = e.target.value;
             reRenderChart(mainTable, datatableParameters[0], datatableParameters[1], datatableParameters[2]);
         };
-        tableFilter2.oninput = (e) => {
-            datatableParameters[1] = e.target.value;
-            reRenderChart(mainTable, datatableParameters[0], datatableParameters[1], datatableParameters[2]);
-        };
-        tableFilter3.oninput = (e) => {
-            datatableParameters[2] = e.target.value;
-            reRenderChart(mainTable, datatableParameters[0], datatableParameters[1], datatableParameters[2]);
-        };
+
 
     </script>
     <script src="./js/scripts.js"></script>

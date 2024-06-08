@@ -435,59 +435,51 @@ function convertDataset(dataset) {
 
 };
 
+
 function processDataForDatatable(dataset, filter, metric, order) {
- // Step 1: Filter the dataset by unique filter values
-    const filteredGroups = dataset.reduce((acc, item) => {
-        const filterValue = item[filter];
-        if (!acc[filterValue]) {
-            acc[filterValue] = [];
+    // Group the dataset by the specified filter column
+    const groupedData = dataset.reduce((acc, row) => {
+        const key = row[filter];
+        if (!acc[key]) {
+            acc[key] = [];
         }
-        acc[filterValue].push(item);
+        acc[key].push(row);
         return acc;
     }, {});
 
-  // Step 2: Aggregate data within each group
-  const aggregatedResults = Object.entries(filteredGroups).map(([filterValue, items]) => {
-      // Aggregate integers and find max revenue for strings
-      const aggregated = items.reduce((acc, item) => {
-          for (const [key, value] of Object.entries(item)) {
-              if (typeof value === 'number') {
-                  acc[key] = (acc[key] || 0) + value;
-              } else if (typeof value === 'string') {
-                  if (!acc[key] || item.revenue > acc.revenue) {
-                      acc[key] = value;
-                  }
-              }
-          }
-          return acc;
-      }, {});
+    // Calculate the sum of integer columns and find the max metric value for each group
+    const result = Object.entries(groupedData).map(([key, group]) => {
+        const sumIntColumns = group.reduce((sums, row) => {
+            Object.keys(row).forEach(col => {
+                if (Number.isInteger(row[col])) {
+                    sums[col] = (sums[col] || 0) + row[col];
+                }
+            });
+            return sums;
+        }, {});
 
-      // Set the filter value
-      aggregated[filter] = filterValue;
+        const maxMetricRow = group.reduce((maxRow, row) => {
+            if (row[metric] > (maxRow[metric] || 0)) {
+                return row;
+            }
+            return maxRow;
+        }, {});
 
-      // Round numeric values to 3 decimal places
-      for (const key in aggregated) {
-          if (typeof aggregated[key] === 'number') {
-              aggregated[key] = parseFloat(aggregated[key].toFixed(1));
-          }
-      }
-
-      return aggregated;
-  });
-
-    // Step 3: Sort the results based on the metric and order
-    aggregatedResults.sort((a, b) => {
-        if (order === 'asc') {
-            return a[metric] - b[metric];
-        } else {
-            return b[metric] - a[metric];
-        }
+        return {
+            ...maxMetricRow,
+            ...sumIntColumns,
+        };
     });
 
+    // Sort the result based on the specified order
+    if (order === 'asc') {
+        result.sort((a, b) => a[metric] - b[metric]);
+    } else if (order === 'desc') {
+        result.sort((a, b) => b[metric] - a[metric]);
+    }
 
-
-    return aggregatedResults;
-};
+    return result;
+}
 
 function getUniqueValuesSpecific(dataset) {
   const uniqueValues = {};
@@ -504,7 +496,7 @@ function getUniqueValuesSpecific(dataset) {
   });
 
   return uniqueValues;
-}
+};
 
 
 function createDatatableOptions(data, element){
