@@ -6,25 +6,26 @@
     <title>Pizza Sales Report Team 24</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap">
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.css">
-    <link rel="stylesheer" href="https://cdn.datatables.net/fixedheader/4.0.1/css/fixedHeader.dataTables.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/fixedheader/4.0.1/css/fixedHeader.dataTables.css">
     <link rel="stylesheet" href="./css/styles.css">
     <link rel="stylesheet" href="./css/styles2.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 <body>
     <div class="container">
         <header>
-            <div class="header-content">
+            <div class="header-content" data-aos="fade-down">
                 <div class="logo">Pizza Sales Report Team 24</div>
             </div>
-            <div class="header-content">
+            <div class="header-content" data-aos="fade-down">
                 <a class="logo" href="./menu/dashboard.html" style="text-decoration: none; color: white;">Dashboard</a>
             </div>
         </header>
-        <div class = "member">
-        <h1>Members Of The Group</h1>
-         </div>
-        <div class="card-container">
-            <div class="card">
+        <div class="member" data-aos="fade-up">
+            <h1>Members Of The Group</h1>
+        </div>
+        <div class="card-container" data-aos="fade-up" data-aos-delay="200">
+            <div class="card" data-aos="flip-left">
                 <div class="header" style="background-color: #dc6b29;">
                     <img src="./img/Hani.png" alt="Profile Picture">
                 </div>
@@ -36,7 +37,7 @@
                     </div>                    
                 </div>
             </div>
-            <div class="card">
+            <div class="card" data-aos="flip-left" data-aos-delay="100">
                 <div class="header" style="background-color: #dc6b29;">
                     <img src="https://via.placeholder.com/100" alt="Profile Picture">
                 </div>
@@ -48,8 +49,7 @@
                     </div>
                 </div>
             </div>
-    
-            <div class="card">
+            <div class="card" data-aos="flip-left" data-aos-delay="200">
                 <div class="header" style="background-color: #dc6b29;">
                     <img src="https://via.placeholder.com/100" alt="Profile Picture">
                 </div>
@@ -61,8 +61,7 @@
                     </div>
                 </div>
             </div>
-    
-            <div class="card">
+            <div class="card" data-aos="flip-left" data-aos-delay="300">
                 <div class="header" style="background-color: #dc6b29;">
                     <img src="./img/Gabriel.png" alt="Profile Picture">
                 </div>
@@ -74,8 +73,7 @@
                     </div>
                 </div>
             </div>
-    
-            <div class="card">
+            <div class="card" data-aos="flip-left" data-aos-delay="400">
                 <div class="header" style="background-color: #dc6b29;">
                     <img src="./img/Veranica.jpg" alt="Profile Picture">
                 </div>
@@ -87,9 +85,8 @@
                     </div>
                 </div>
             </div>
-    
-            <div class="card">
-                <div class="header" style="background-color: #dc6b29">
+            <div class="card" data-aos="flip-left" data-aos-delay="500">
+                <div class="header" style="background-color: #dc6b29;">
                     <img src="./img/Aghisna.jpeg" alt="Profile Picture">
                 </div>
                 <div class="body">
@@ -100,9 +97,8 @@
                     </div>
                 </div>
             </div>
-    
-            <div class="card">
-                <div class="header" style="background-color: #dc6b29">
+            <div class="card" data-aos="flip-left" data-aos-delay="600">
+                <div class="header" style="background-color: #dc6b29;">
                     <img src="./img/Yuda.jpg" alt="Profile Picture">
                 </div>
                 <div class="body">
@@ -113,8 +109,7 @@
                     </div>
                 </div>
             </div>
-    
-            <div class="card">
+            <div class="card" data-aos="flip-left" data-aos-delay="700">
                 <div class="header" style="background-color: #dc6b29;">
                     <img src="./img/Robby.jpg" alt="Profile Picture">
                 </div>
@@ -126,7 +121,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card">
+            <div class="card" data-aos="flip-left" data-aos-delay="800">
                 <div class="header" style="background-color: #dc6b29;">
                     <img src="./img/Chintia.JPG" alt="Profile Picture">
                 </div>
@@ -138,8 +133,7 @@
                     </div>                    
                 </div>
             </div>
-    
-            <div class="card">
+            <div class="card" data-aos="flip-left" data-aos-delay="900">
                 <div class="header" style="background-color: #dc6b29;">
                     <img src="./img/hasna.jpg" alt="Profile Picture">
                 </div>
@@ -151,8 +145,7 @@
                     </div>
                 </div>
             </div>
-    
-           <div class="card">
+            <div class="card" data-aos="flip-left" data-aos-delay="1000">
                 <div class="header" style="background-color: #dc6b29;">
                     <img src="./img/claudia.png" alt="Profile Picture">
                 </div>
@@ -166,7 +159,7 @@
             </div> 
         </div>
         <div class="main-content">
-            <div class="sidebar">
+            <div class="sidebar" data-aos="fade-right">
                 <div class="nav-item">
                     <h3>About Team 24</h3>
                     <p>Tim 24 Balikpapan adalah sebuah tim yang terdiri dari sebelas anggota yang berasal
@@ -192,40 +185,38 @@
                     <p><strong>Large size pizza</strong> contributes to maximum sales</p>
                 </div>
             </div>
-            <div class="dashboard">
-                <div class="metrics">
-                    <div class="metric">
+            <div class="dashboard" data-aos="fade-left">
+                <div class="metrics" data-aos="fade-up">
+                    <div class="metric" data-aos="zoom-in">
                         <h4>Total Revenue</h4>
                         <p>817,9 rb</p>
                     </div>
-                    <div class="metric">
+                    <div class="metric" data-aos="zoom-in" data-aos-delay="100">
                         <h4>Avg Order Value</h4>
                         <p>$38</p>
                     </div>
-                    <div class="metric">
+                    <div class="metric" data-aos="zoom-in" data-aos-delay="200">
                         <h4>Total Orders</h4>
                         <p>21.350</p>
                     </div>
-                    <div class="metric">
+                    <div class="metric" data-aos="zoom-in" data-aos-delay="300">
                         <h4>Total Pizzas Sold</h4>
                         <p>49.574</p>
                     </div>
                 </div>
-                <div class="charts">
+                <div class="charts" data-aos="fade-up" data-aos-delay="400">
                     <canvas id="dailyTrendChart"></canvas>
                     <canvas id="monthlyTrendChart"></canvas>
                     <canvas id="salesByCategoryChart"></canvas>
                     <canvas id="salesBySizeChart"></canvas>
                     <canvas id="totalPizzasSoldByCategoryChart"></canvas>
                 </div>
-
             </div>
         </div>
-        <div class="tables">
+        <div class="tables" data-aos="fade-up">
             <div class="table">
                 <div class="tableFilters">
                     <select id="tableFilter1">
-
                     </select>
                 </div>
                 <table id="mainTable" class="display" style="width:100%">
@@ -233,7 +224,7 @@
             </div>
         </div>
     </div>
-    <footer>
+    <footer data-aos="fade-up">
         <p>&copy; 2024 Kelompok 24 Balikpapan.</p>
         <p>Website by <a href="https://km-feb24-balikpapan-24.vercel.app" target="_blank">Team 24 Balikpapan Ilmu Padi Kawan</a></p>
     </footer>
@@ -241,7 +232,7 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
     <script src="./js/functions.js"></script>
-
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         const mainTable = document.getElementById("mainTable");
         const tableFilter1 = document.getElementById("tableFilter1");
@@ -253,10 +244,9 @@
             reRenderChart(mainTable, datatableParameters[0], datatableParameters[1], datatableParameters[2]);
         };
 
-
+        AOS.init();
     </script>
     <script src="./js/scripts.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
 </body>
 </html>
