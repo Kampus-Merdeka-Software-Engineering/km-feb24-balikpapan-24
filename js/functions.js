@@ -470,7 +470,7 @@ function processDataForDatatable(dataset, filter, metric, order) {
         // Combine the max metric row with the summed integer columns
         const aggregatedRow = {
             ...maxMetricRow,
-            ...sumIntColumns,
+            ...sumIntColumns
         };
 
         // Set the filter value
