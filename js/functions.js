@@ -120,6 +120,7 @@ function toggleDisplay(element) {
   } else {
       element.style.display = 'block';
   };
+  AOS.refresh();
 };
 
 function toggleDisplayFlex(element) {
@@ -128,6 +129,7 @@ function toggleDisplayFlex(element) {
   } else {
       element.style.display = 'flex';
   };
+  AOS.refresh();
 }
 
 // mengubah warna oranye
