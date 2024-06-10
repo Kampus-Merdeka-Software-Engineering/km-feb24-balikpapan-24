@@ -113,6 +113,26 @@ function translateIndex(label){
 
 };
 
+// fungsi untuk mendapatkan animasi aos acak
+function assignRandomAos(element) {
+    // Define an array of possible AOS animation types
+    const aosTypes = [
+        'slide-down', 'zoom-in-down', 'fade-down', 'fade-left', 'fade-right', 'fade-up-right',
+        'fade-up-left', 'fade-down-right', 'fade-down-left', 'zoom-in', 'zoom-in-up', 'zoom-in-down', 'zoom-in-left',
+        'zoom-in-right', 'zoom-out', 'zoom-out-up', 'zoom-out-down', 'zoom-out-left',
+        'zoom-out-right', 'slide-up', 'slide-down', 'slide-left', 'slide-right'
+    ];
+
+    // Select a random AOS type
+    const randomAosType = aosTypes[Math.floor(Math.random() * aosTypes.length)];
+
+    // Set the random AOS type as the data-aos attribute
+    element.setAttribute('data-aos', randomAosType);
+
+    // Return the modified element
+    return element;
+}
+
 // Fungsi untuk mengalihkan tampilan properti dari elemen HTML antara 'block' dan 'none'
 function toggleDisplay(element) {
   if (element.style.display == 'block') {
@@ -173,7 +193,7 @@ return chartDataset; // Mengembalikan dataset grafik yang dimodifikasi
 
 // Fungsi untuk membuat grafik baru menggunakan pustaka Chart.js
 function makeChart(e, charx) {
-  let container = document.createElement('section'); // Membuat elemen section baru
+  let container = assignRandomAos(document.createElement('section')); // Membuat elemen section baru
   let canvas = document.createElement('canvas'); // Membuat elemen canvas baru
   let h3 = document.createElement('h3');
   h3.innerHTML = "Data " + pageParameters.defaultFilterNames[charx.datasetIndex];

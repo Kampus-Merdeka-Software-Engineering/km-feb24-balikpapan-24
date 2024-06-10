@@ -196,6 +196,7 @@
             pageParameters.pageWidth = parseInt(sidebarInput[0][indexPageWidth].value);
             mainFrame.style.width = pageParameters.pageWidth + "%";
             sidebarLabel[0][indexPageWidth].innerHTML = labelNames[0][indexPageWidth] + ": " + pageParameters.pageWidth + "%";
+            AOS.refresh();
         };
         sidebarInput[0][sidebarHeight].oninput = function() {
             pageParameters.sidebarWidth = parseInt(sidebarInput[0][sidebarHeight].value);
@@ -208,6 +209,7 @@
             let main2 = document.querySelector('body main');
             main2.style.gridTemplateColumns = "repeat(auto-fit, minmax(" + chartParameters.chartWidth + "%, 1fr))";
             sidebarLabel[0][charWidth].innerHTML = labelNames[0][charWidth] + ": " + chartParameters.chartWidth + "%";
+            AOS.refresh();
         };
         sidebarInput[0][chartColor].oninput = function() {
             chartParameters.chartColor = sidebarInput[0][chartColor].value.toString();
